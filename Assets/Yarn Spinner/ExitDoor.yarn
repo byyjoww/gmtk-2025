@@ -1,8 +1,0 @@
-﻿title: ExitDoor
-position: 0,0
----
-Would you like to end your shift?
-    -> Yes
-        <<exit ExitDoor>>
-    -> No
-===
