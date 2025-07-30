@@ -30,7 +30,12 @@ namespace GMTK2025.Environment
         public bool IsEnabled
         {
             get => isEnabled;
-            set => isEnabled = value;
+            set
+            {
+                if (value == isEnabled) { return; }
+                isEnabled = value;
+                if (!isEnabled) { RemoveFocus(); }
+            }
         }
 
         public event UnityAction<IInteractor, IInteractable> OnFocus;
@@ -46,6 +51,16 @@ namespace GMTK2025.Environment
             this.holdResolvers = new Dictionary<int, IHoldResolver>();
             input.OnInteractDown += HandleInteractDown;
             input.OnInteractUp += HandleInteractUp;
+        }
+
+        public void Enable()
+        {
+            IsEnabled = true;
+        }
+
+        public void Disable()
+        {
+            IsEnabled = false;
         }
 
         private void HandleInteractDown(int action)

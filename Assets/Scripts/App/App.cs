@@ -6,6 +6,7 @@ using GMTK2025.UI;
 using SLS.Core;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 namespace GMTK2025.App
 {
@@ -15,6 +16,7 @@ namespace GMTK2025.App
         [SerializeField] private PlayerCharacter character = default;
         [SerializeField] private new PlayerCamera camera = default;
         [SerializeField] private PlayerInput input = default;
+        [SerializeField] private DialogueRunner dialogue = default;
         [SerializeField] private Door exit = default;
 
         [Header("UI")]
@@ -31,7 +33,7 @@ namespace GMTK2025.App
 
         private void Init()
         {
-            character.Setup(input, camera);
+            character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);

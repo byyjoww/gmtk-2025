@@ -335,6 +335,7 @@ MonoBehaviour:
   character: {fileID: 6177337247466555306}
   camera: {fileID: 124551909603050674}
   input: {fileID: 56173064}
+  dialogue: {fileID: 1517419174}
   exit: {fileID: 1111610021}
   interactionView: {fileID: 882088043}
 --- !u!1 &839639376
@@ -691,7 +692,10 @@ MonoBehaviour:
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  dialogue: {fileID: 1517419174}
   destination: {fileID: 1382815655}
+  yarnProject: {fileID: 7545569452688597077, guid: 6319fa04cf35dfc44bc23085c335d8c5, type: 3}
+  startNode: ExitDoor
 --- !u!114 &1182902110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,6 +1346,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: nextLineKeyCode
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: hurryUpLineKeyCode
+      value: 102
+      objectReference: {fileID: 0}
     - target: {fileID: 7262066351540048079, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_Name
       value: Dialogue System
@@ -1423,6 +1435,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: autoStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
       value: 
       objectReference: {fileID: 7545569452688597077, guid: 6319fa04cf35dfc44bc23085c335d8c5, type: 3}
@@ -1435,6 +1451,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52571f68872914e24837210513edea1d, type: 3}
+--- !u!114 &1517419174 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
+  m_PrefabInstance: {fileID: 1517419173}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539935146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2566,9 +2593,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 838462611}
   - {fileID: 56173063}
+  - {fileID: 1517419173}
   - {fileID: 869475160}
   - {fileID: 1589949042}
   - {fileID: 1294447216}
   - {fileID: 4898695648008711}
   - {fileID: 349432837}
-  - {fileID: 1517419173}
