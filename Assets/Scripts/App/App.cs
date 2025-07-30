@@ -23,6 +23,8 @@ namespace GMTK2025.App
         // view controllers
         private InteractionViewController interactionViewController = default;
 
+        private List<ITickable> tickables = new List<ITickable>();
+
         public void Start() => Init();
 
         public void OnApplicationQuit() => Terminate();
@@ -37,11 +39,8 @@ namespace GMTK2025.App
 
         private void Terminate()
         {
-
             interactionViewController?.Dispose();
         }
-
-        private List<ITickable> tickables = new List<ITickable>();
 
         public void RegisterOnTick(ITickable tickable)
         {
