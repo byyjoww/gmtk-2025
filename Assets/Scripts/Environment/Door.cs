@@ -7,15 +7,9 @@ namespace GMTK2025.Environment
     {
         [SerializeField] private Transform destination = default;
 
-        protected override bool DoInteract(IInteractor interactor)
+        protected override void OnInteracted(IInteractor interactor)
         {
-            if (base.DoInteract(interactor))
-            {
-                interactor.transform.GetComponent<PlayerCharacter>().TeleportToPosition(destination.position);
-                return true;
-            }
-
-            return false;
+            interactor.transform.GetComponent<PlayerCharacter>().TeleportToPosition(destination.position);
         }
     }
 }

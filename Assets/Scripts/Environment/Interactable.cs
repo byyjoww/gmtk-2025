@@ -63,8 +63,14 @@ namespace GMTK2025.Environment
         {
             if (!IsEnabled || !CanFocus(interactor)) { return false; }
             IsEnabled = !disableOnInteract;
+            OnInteracted(interactor);
             onInteract?.Invoke();
             return true;
+        }
+
+        protected virtual void OnInteracted(IInteractor interactor)
+        {
+
         }
 
         protected void TriggerOnForcedUnfocus()

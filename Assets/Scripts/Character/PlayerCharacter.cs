@@ -14,11 +14,13 @@ namespace GMTK2025.Characters
     public class PlayerCharacter : ExampleCharacterController, IInteractor, IInteractionModel, ITicker
     {
         [Header("Interaction")]
+        [SerializeField] private int startingCurrency = 100;
         [SerializeField] private InteractionChecker.Config interaction = new InteractionChecker.Config();
 
         private IPlayerInput input = default;
         private Transform camTransform = default;
         private InteractionChecker interactionChecker = default;
+        private Wallet wallet = default;
 
         private List<ITickable> tickables = new List<ITickable>();
 
@@ -39,7 +41,8 @@ namespace GMTK2025.Characters
             this.input = input;
             this.camTransform = camera.Transform;
 
-            interactionChecker = new InteractionChecker(this, input, this, interaction);            
+            interactionChecker = new InteractionChecker(this, input, this, interaction);
+            wallet = new Wallet(startingCurrency);
         }
 
         private void Update()
