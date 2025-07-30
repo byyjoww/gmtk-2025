@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Yarn.Unity;
 
 namespace GMTK2025.Characters
 {
@@ -20,9 +21,11 @@ namespace GMTK2025.Characters
         private IPlayerInput input = default;
         private Transform camTransform = default;
         private InteractionChecker interactionChecker = default;
+        private DialogueRunner dialogue = default;
         private Wallet wallet = default;
 
         private List<ITickable> tickables = new List<ITickable>();
+        private bool movementEnabled = true;
 
         public event UnityAction<IInteractor, IInteractable> OnFocus
         {
@@ -36,13 +39,32 @@ namespace GMTK2025.Characters
             remove => interactionChecker.OnDefocus -= value;
         }
 
-        public void Setup(IPlayerInput input, PlayerCamera camera)
+        public void Setup(IPlayerInput input, PlayerCamera camera, DialogueRunner dialogue)
         {
             this.input = input;
             this.camTransform = camera.Transform;
+            this.dialogue = dialogue;
 
             interactionChecker = new InteractionChecker(this, input, this, interaction);
+            dialogue.onDialogueStart.AddListener(OnDialogueStarted);
+            dialogue.onDialogueComplete.AddListener(OnDialogueEnded);
+
             wallet = new Wallet(startingCurrency);
+        }
+
+        public void TeleportToPosition(Vector3 position)
+        {
+            Motor.MoveCharacter(position);
+        }
+
+        public void RegisterOnTick(ITickable tickable)
+        {
+            tickables.Add(tickable);
+        }
+
+        public void DeregisterOnTick(ITickable tickable)
+        {
+            tickables.Remove(tickable);
         }
 
         private void Update()
@@ -52,7 +74,7 @@ namespace GMTK2025.Characters
                 tickables[i].OnTick();
             }
 
-            if (input != null && camTransform != null) 
+            if (input != null && camTransform != null && movementEnabled) 
             {
                 HandleCharacterInput();
             }
@@ -71,26 +93,25 @@ namespace GMTK2025.Characters
             characterInputs.CrouchUp = input.CrouchUp;
 
             SetInputs(ref characterInputs);
+        }        
+
+        private void OnDialogueStarted()
+        {
+            interactionChecker.Disable();
+            movementEnabled = false;
         }
 
-        public void TeleportToPosition(Vector3 position)
+        private void OnDialogueEnded()
         {
-            Motor.MoveCharacter(position);
-        }
-
-        public void RegisterOnTick(ITickable tickable)
-        {
-            tickables.Add(tickable);
-        }
-
-        public void DeregisterOnTick(ITickable tickable)
-        {
-            tickables.Remove(tickable);
+            interactionChecker.Enable();
+            movementEnabled = true;
         }
 
         private void OnDestroy()
         {
             interactionChecker?.Dispose();
+            dialogue.onDialogueStart?.RemoveListener(OnDialogueStarted);
+            dialogue.onDialogueComplete?.RemoveListener(OnDialogueEnded);
         }
     }
 }
