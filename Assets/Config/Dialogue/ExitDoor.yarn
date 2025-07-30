@@ -1,4 +1,7 @@
 ﻿title: ExitDoor
 ---
-This is an example of a Yarn Spinner script. Write your dialogue here!
+Would you like to end your shift?
+    -> End the shift
+    <<exit ExitDoor>>
+    -> There's still more tickets to check 
 ===
