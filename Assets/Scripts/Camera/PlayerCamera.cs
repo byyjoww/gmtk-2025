@@ -1,3 +1,4 @@
+using GMTK2025.Characters;
 using GMTK2025.Inputs;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
@@ -7,17 +8,27 @@ namespace GMTK2025.Cameras
 {
     public class PlayerCamera : ExampleCharacterCamera
     {
-        public IPlayerInput Input { get; set; }
-        public KinematicCharacterMotor Motor { get; set; }
-        public Vector3 Up { get; set; }
+        private IPlayerInput input = default;
+        private KinematicCharacterMotor motor = default;     
+
+        public void Setup(IPlayerInput input, PlayerCharacter character)
+        {
+            this.input = input;
+            this.motor = character.Motor;
+
+            Cursor.lockState = CursorLockMode.Locked;
+            SetFollowTransform(character.CameraFollowPoint);
+            IgnoredColliders.Clear();
+            IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
+        }
 
         private void LateUpdate()
         {
             // Handle rotating the camera along with physics movers
-            if (RotateWithPhysicsMover && Motor != null)
+            if (RotateWithPhysicsMover && motor != null)
             {
-                PlanarDirection = Motor.AttachedRigidbody.GetComponent<PhysicsMover>().RotationDeltaFromInterpolation * PlanarDirection;
-                PlanarDirection = Vector3.ProjectOnPlane(PlanarDirection, Up).normalized;
+                PlanarDirection = motor.AttachedRigidbody.GetComponent<PhysicsMover>().RotationDeltaFromInterpolation * PlanarDirection;
+                PlanarDirection = Vector3.ProjectOnPlane(PlanarDirection, motor.CharacterUp).normalized;
             }
 
             HandleCameraInput();
@@ -25,11 +36,11 @@ namespace GMTK2025.Cameras
 
         private void HandleCameraInput()
         {
-            if (Input == null) { return; }
+            if (input == null) { return; }
 
             // Create the look input vector for the camera
-            float mouseLookAxisUp = Input.MouseLookUp;
-            float mouseLookAxisRight = Input.MouseLookRight;
+            float mouseLookAxisUp = input.MouseLookUp;
+            float mouseLookAxisRight = input.MouseLookRight;
             Vector3 lookInputVector = new Vector3(mouseLookAxisRight, mouseLookAxisUp, 0f);
 
             // Prevent moving the camera while the cursor isn't locked
@@ -39,7 +50,7 @@ namespace GMTK2025.Cameras
             }
 
             // Input for zooming the camera (disabled in WebGL because it can cause problems)
-            float scrollInput = Input.MouseScroll;
+            float scrollInput = input.MouseScroll;
 #if UNITY_WEBGL
         scrollInput = 0f;
 #endif
@@ -48,7 +59,7 @@ namespace GMTK2025.Cameras
             UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
 
             // Handle toggling zoom level
-            if (Input.MouseSecondary)
+            if (input.MouseSecondary)
             {
                 TargetDistance = (TargetDistance == 0f) ? DefaultDistance : 0f;
             }

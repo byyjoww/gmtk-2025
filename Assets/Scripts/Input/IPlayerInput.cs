@@ -1,4 +1,7 @@
-﻿namespace GMTK2025.Inputs
+﻿using System;
+using UnityEngine.Events;
+
+namespace GMTK2025.Inputs
 {
     public interface IPlayerInput
     {
@@ -12,5 +15,8 @@
         float MouseLookRight { get; }
         float MouseScroll { get; }
         bool MouseSecondary { get; }
+
+        event UnityAction<int> OnInteractDown;
+        event UnityAction<int> OnInteractUp;
     }
 }

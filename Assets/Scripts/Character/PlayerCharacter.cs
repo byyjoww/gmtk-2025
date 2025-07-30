@@ -1,19 +1,58 @@
+using GMTK2025.Cameras;
+using GMTK2025.Environment;
 using GMTK2025.Inputs;
+using GMTK2025.UI;
 using KinematicCharacterController.Examples;
+using SLS.Core;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GMTK2025.Characters
 {
-    public class PlayerCharacter : ExampleCharacterController
+    public class PlayerCharacter : ExampleCharacterController, IInteractor, IInteractionModel, ITicker
     {
-        public IPlayerInput Input { get; set; }
-        public Transform CameraTransform { get; set; }
+        [Header("Interaction")]
+        [SerializeField] private InteractionChecker.Config interaction = new InteractionChecker.Config();
+
+        private IPlayerInput input = default;
+        private Transform camTransform = default;
+        private InteractionChecker interactionChecker = default;
+
+        private List<ITickable> tickables = new List<ITickable>();
+
+        public event UnityAction<IInteractor, IInteractable> OnFocus
+        {
+            add => interactionChecker.OnFocus += value;
+            remove => interactionChecker.OnFocus -= value;
+        }
+
+        public event UnityAction OnDefocus
+        {
+            add => interactionChecker.OnDefocus += value;
+            remove => interactionChecker.OnDefocus -= value;
+        }
+
+        public void Setup(IPlayerInput input, PlayerCamera camera)
+        {
+            this.input = input;
+            this.camTransform = camera.Transform;
+
+            interactionChecker = new InteractionChecker(this, input, this, interaction);            
+        }
 
         private void Update()
         {
-            if (Input == null || CameraTransform == null) { return; }
+            for (int i = tickables.Count; i-- > 0;)
+            {
+                tickables[i].OnTick();
+            }
 
-            HandleCharacterInput();
+            if (input != null && camTransform != null) 
+            {
+                HandleCharacterInput();
+            }
         }
 
         private void HandleCharacterInput()
@@ -21,14 +60,34 @@ namespace GMTK2025.Characters
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
 
             // Build the CharacterInputs struct
-            characterInputs.MoveAxisForward = Input.Forward;
-            characterInputs.MoveAxisRight = Input.Right;
-            characterInputs.CameraRotation = CameraTransform.rotation;
-            characterInputs.JumpDown = Input.Jump;
-            characterInputs.CrouchDown = Input.CrouchDown;
-            characterInputs.CrouchUp = Input.CrouchUp;
+            characterInputs.MoveAxisForward = input.Forward;
+            characterInputs.MoveAxisRight = input.Right;
+            characterInputs.CameraRotation = camTransform.rotation;
+            characterInputs.JumpDown = input.Jump;
+            characterInputs.CrouchDown = input.CrouchDown;
+            characterInputs.CrouchUp = input.CrouchUp;
 
             SetInputs(ref characterInputs);
+        }
+
+        public void TeleportToPosition(Vector3 position)
+        {
+            Motor.MoveCharacter(position);
+        }
+
+        public void RegisterOnTick(ITickable tickable)
+        {
+            tickables.Add(tickable);
+        }
+
+        public void DeregisterOnTick(ITickable tickable)
+        {
+            tickables.Remove(tickable);
+        }
+
+        private void OnDestroy()
+        {
+            interactionChecker?.Dispose();
         }
     }
 }
