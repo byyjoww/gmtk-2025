@@ -1,3 +1,18 @@
 {
-	"name": "GMTK2025"
+    "name": "GMTK2025",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ce1abfdae7e03d548986854ccd6013e9",
+        "GUID:c8584e81f08b7944ab9cfb3220aa9c47",
+        "GUID:a37c5d2f07e165043a23f037d5172367"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
