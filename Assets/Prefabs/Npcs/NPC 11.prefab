@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 272076900908163447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6223582571622559248}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 28666390038693510}
   - component: {fileID: 2961434366446859392}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: NPC 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,5 +190,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 2, z: 3}
-  m_Center: {x: 0, y: 1, z: 1}
+  m_Size: {x: 1.3126452, y: 2, z: 1.7866206}
+  m_Center: {x: 0.0388695, y: 1, z: 0.3933103}

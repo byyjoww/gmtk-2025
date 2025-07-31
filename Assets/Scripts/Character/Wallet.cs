@@ -4,7 +4,7 @@ namespace GMTK2025.Characters
 {
     public class Wallet
     {
-        public int current = default;
+        private int current = default;
 
         public int Current => current;
 
@@ -26,6 +26,11 @@ namespace GMTK2025.Characters
 
             Set(current - amount);
             return true;
+        }
+
+        public void Clear()
+        {
+            Set(0);
         }
 
         public void Set(int amount)

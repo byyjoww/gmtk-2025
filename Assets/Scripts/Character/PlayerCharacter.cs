@@ -15,19 +15,15 @@ namespace GMTK2025.Characters
     public class PlayerCharacter : ExampleCharacterController, IInteractor, IInteractionModel, ITicker
     {
         [Header("Interaction")]
-        [SerializeField] private int startingCurrency = 100;
         [SerializeField] private InteractionChecker.Config interaction = new InteractionChecker.Config();
 
         private IPlayerInput input = default;
         private Transform camTransform = default;
         private InteractionChecker interactionChecker = default;
-        private DialogueRunner dialogue = default;
-        private Wallet wallet = default;
+        private DialogueRunner dialogue = default;        
 
         private List<ITickable> tickables = new List<ITickable>();
         private bool movementEnabled = true;
-
-        public Wallet Wallet => wallet;
 
         public event UnityAction<IInteractor, IInteractable> OnFocus
         {
@@ -50,8 +46,6 @@ namespace GMTK2025.Characters
             interactionChecker = new InteractionChecker(this, input, this, interaction);
             dialogue.onDialogueStart.AddListener(OnDialogueStarted);
             dialogue.onDialogueComplete.AddListener(OnDialogueEnded);
-
-            wallet = new Wallet(startingCurrency);
         }
 
         public void TeleportToPosition(Vector3 position)

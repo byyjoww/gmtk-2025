@@ -5,17 +5,16 @@ namespace GMTK2025.GameLoop
     public class Loop
     {
         private PlayerCharacter character = default;
-        private NPCProfile[] npcs = default;
+        private Wallet collected = default;
 
-        public int Quota { get; private set; }
-        public int Accumulated { get; private set; }
+        public NPCProfile[] NPCs { get; private set; }
         public int Kicked { get; private set; }
 
-        public Loop(NPCProfile[] npcs, int quota)
+        public Loop(PlayerCharacter character, Wallet collected, NPCProfile[] npcs)
         {
-            this.npcs = npcs;
-            this.Quota = quota;
-            this.Accumulated = 0;
+            this.character = character;
+            this.collected = collected;
+            this.NPCs = npcs;
             this.Kicked = 0;
         }
     }

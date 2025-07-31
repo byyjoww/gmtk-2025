@@ -34,6 +34,9 @@ namespace GMTK2025.App
 
         private LoopFactory loopFactory = default;
         private GameState gameState = default;
+        private Wallet wallet = default;
+        private Wallet collected = default;
+        private Wallet quota = default;
 
         // view controllers
         private InteractionViewController interactionViewController = default;
@@ -48,16 +51,20 @@ namespace GMTK2025.App
         private void Init()
         {
             interactables.ForEach(x => x.Setup(dialogue));
+            npcs.ForEach(x => x.Setup(dialogue));
 
             character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
-            loopFactory = new LoopFactory(npcs, train.SpawnLocations, loopConfig);
-            gameState = new GameState(character, loopFactory, carriageEntrance, carriageExit);
+            loopFactory = new LoopFactory(character, dialogue, collected, npcs, train.SpawnLocations, loopConfig);
+            wallet = new Wallet(0);
+            collected = new Wallet(0);
+            quota = new Wallet(0);
+            gameState = new GameState(character, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
             
-            quotaViewController = new QuotaViewController(quotaView, character.Wallet);
+            quotaViewController = new QuotaViewController(quotaView, wallet, collected, quota);
             quotaViewController?.Init();
         }
 
@@ -88,7 +95,7 @@ namespace GMTK2025.App
         private void OnValidate()
         {
             interactables = FindObjectsByType<InteractableDialogueObject>(FindObjectsSortMode.None);
-            npcs = FindObjectsByType<NPC>(FindObjectsSortMode.None);
+            // npcs = FindObjectsByType<NPC>(FindObjectsSortMode.None);
         }
     }
 }
