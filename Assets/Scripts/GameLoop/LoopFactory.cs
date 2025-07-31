@@ -1,4 +1,8 @@
 ﻿using GMTK2025.Environment;
+using NUnit.Framework;
+using SLS.Core.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GMTK2025.GameLoop
@@ -7,31 +11,50 @@ namespace GMTK2025.GameLoop
     {
         public struct Config
         {
-            public int NumOfNPCPerCarriage;
             public NPCPreset[] presets;
         }
 
         private NPC[] npcs = default;
-        private Transform[] spawnPositions = default;
+        private SpawnLocation[] spawnPositions = default;
         private Config config = default;
 
-        public LoopFactory(NPC[] npcs, Transform[] spawnPositions, Config config)
+        public LoopFactory(NPC[] npcs, SpawnLocation[] spawnPositions, Config config)
         {
             this.npcs = npcs;
             this.spawnPositions = spawnPositions;
             this.config = config;
         }
 
-        public Loop Create()
+        public Loop Create(int numOfNpcs, int quota)
         {
-            var profiles = CreateNPCProfilesForLoop();
-            int quota = profiles.Length * 10;
+            var profiles = CreateNPCProfilesForLoop(numOfNpcs);            
             return new Loop(profiles, quota);
         }
 
-        private NPCProfile[] CreateNPCProfilesForLoop()
+        private NPCProfile[] CreateNPCProfilesForLoop(int numOfNpcs)
         {
-            return new NPCProfile[0];
+            var profiles = new NPCProfile[numOfNpcs];
+            var availableNPCs = npcs.ToList();
+            var availablePresets = config.presets.ToList();
+            var availableSpawns = spawnPositions.ToList();
+
+            for (int i = 0; i < numOfNpcs; i++)
+            {
+                var profile = new NPCProfile
+                {
+                    npc = availableNPCs.Random(),
+                    preset = availablePresets.Random(),
+                    spawn = availableSpawns.Random(),
+                };
+
+                availableNPCs.Remove(profile.npc);
+                availablePresets.Remove(profile.preset);
+                availableSpawns.Remove(profile.spawn);
+                availableSpawns.RemoveAll(x => profile.spawn.Associated.Contains(x));
+                profiles[i] = profile;
+            }
+
+            return profiles;
         }
     }
 }

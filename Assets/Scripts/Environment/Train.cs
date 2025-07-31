@@ -1,25 +1,27 @@
-﻿using NUnit.Framework;
-using SLS.Core.Attributes;
-using System.Collections.Generic;
+﻿using SLS.Core.Attributes;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+using UnityEditor.SceneManagement;
+#endif
 
 namespace GMTK2025.Environment
 {
     public class Train : MonoBehaviour
     {
-        [SerializeField] private Transform spawnPosRoot = default;
-        [SerializeField, ReadOnly] private Transform[] spawnPositions = default;
+        [SerializeField, ReadOnly] private SpawnLocation[] spawnLocations = default;
 
-        public Transform[] SpawnPositions => spawnPositions;
+        public SpawnLocation[] SpawnLocations => spawnLocations;
 
         private void OnValidate()
         {
-            var spawns = new List<Transform>();
-            foreach (Transform transform in spawnPosRoot.transform)
+#if UNITY_EDITOR
+            if (PrefabUtility.IsPartOfNonAssetPrefabInstance(gameObject) && PrefabStageUtility.GetCurrentPrefabStage() == null)
             {
-                spawns.Add(transform);
+                spawnLocations = FindObjectsByType<SpawnLocation>(FindObjectsSortMode.None);
+                EditorUtility.SetDirty(this);
             }
-            spawnPositions = spawns.ToArray();
+#endif
         }
     }
 }

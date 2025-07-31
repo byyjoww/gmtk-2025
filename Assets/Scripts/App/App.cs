@@ -52,7 +52,7 @@ namespace GMTK2025.App
             character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
-            loopFactory = new LoopFactory(npcs, train.SpawnPositions, loopConfig);
+            loopFactory = new LoopFactory(npcs, train.SpawnLocations, loopConfig);
             gameState = new GameState(character, loopFactory, carriageEntrance, carriageExit);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
