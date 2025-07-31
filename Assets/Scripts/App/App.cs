@@ -14,6 +14,9 @@ namespace GMTK2025.App
 {
     public class App : MonoBehaviour, ITicker
     {
+        [Header("Config")]
+        [SerializeField] private LoopFactory.Config loopConfig = new LoopFactory.Config();
+
         [Header("Components")]
         [SerializeField] private PlayerCharacter character = default;
         [SerializeField] private new PlayerCamera camera = default;
@@ -21,9 +24,9 @@ namespace GMTK2025.App
         [SerializeField] private DialogueRunner dialogue = default;
         [SerializeField] private InteractableObject carriageEntrance = default;
         [SerializeField] private Door carriageExit = default;
-
-        [Header("Databases")]
+        [SerializeField] private Train train = default;
         [SerializeField] private InteractableDialogueObject[] interactables = default;
+        [SerializeField] private NPC[] npcs = default;                
 
         [Header("UI")]
         [SerializeField] private InteractionView interactionView = default;
@@ -49,7 +52,7 @@ namespace GMTK2025.App
             character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
-            loopFactory = new LoopFactory();
+            loopFactory = new LoopFactory(npcs, train.SpawnPositions, loopConfig);
             gameState = new GameState(character, loopFactory, carriageEntrance, carriageExit);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
@@ -85,6 +88,7 @@ namespace GMTK2025.App
         private void OnValidate()
         {
             interactables = FindObjectsByType<InteractableDialogueObject>(FindObjectsSortMode.None);
+            npcs = FindObjectsByType<NPC>(FindObjectsSortMode.None);
         }
     }
 }
