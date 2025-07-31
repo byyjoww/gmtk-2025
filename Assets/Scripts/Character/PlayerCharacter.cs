@@ -84,15 +84,16 @@ namespace GMTK2025.Characters
 
         private void HandleCharacterInput()
         {
-            PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
-
-            // Build the CharacterInputs struct
-            characterInputs.MoveAxisForward = input.Forward;
-            characterInputs.MoveAxisRight = input.Right;
-            characterInputs.CameraRotation = camTransform.rotation;
-            characterInputs.JumpDown = input.Jump;
-            characterInputs.CrouchDown = input.CrouchDown;
-            characterInputs.CrouchUp = input.CrouchUp;
+            PlayerCharacterInputs characterInputs = new PlayerCharacterInputs
+            {
+                // Build the CharacterInputs struct
+                MoveAxisForward = input.Forward,
+                MoveAxisRight = input.Right,
+                CameraRotation = camTransform.rotation,
+                JumpDown = input.Jump,
+                CrouchDown = input.CrouchDown,
+                CrouchUp = input.CrouchUp,
+            };
 
             SetInputs(ref characterInputs);
         }        
@@ -101,6 +102,18 @@ namespace GMTK2025.Characters
         {
             interactionChecker.Disable();
             movementEnabled = false;
+
+            PlayerCharacterInputs characterInputs = new PlayerCharacterInputs
+            {
+                MoveAxisForward = 0f,
+                MoveAxisRight = 0f,
+                CameraRotation = camTransform.rotation,
+                JumpDown = false,
+                CrouchDown = false,
+                CrouchUp = false,
+            };
+
+            SetInputs(ref characterInputs);
         }
 
         private void OnDialogueEnded()

@@ -7,9 +7,11 @@ namespace GMTK2025.Environment
 {
     public class InteractableDialogueObject : InteractableObject
     {
+        private const string NO_DIALOGUE = "";
+
         [SerializeField] private YarnProject yarnProject = default;
         [SerializeField, YarnNode(nameof(yarnProject))]
-        private string startNode = "Start";
+        private string startNode = NO_DIALOGUE;
 
         private DialogueRunner dialogue = default;
 
@@ -28,6 +30,11 @@ namespace GMTK2025.Environment
 
         protected override void OnInteracted(IInteractor interactor)
         {
+            if (startNode == NO_DIALOGUE)
+            {
+                return;
+            }
+
             dialogue.StartDialogue(startNode);
         }
 

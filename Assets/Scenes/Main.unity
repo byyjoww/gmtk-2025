@@ -338,6 +338,10 @@ MonoBehaviour:
   dialogue: {fileID: 1517419174}
   waitingRoomExit: {fileID: 1512332874}
   carriageExit: {fileID: 1111610021}
+  interactables:
+  - {fileID: 1496699698}
+  - {fileID: 1512332874}
+  - {fileID: 1111610021}
   interactionView: {fileID: 882088043}
   quotaView: {fileID: 1694547021}
 --- !u!1 &839639376
