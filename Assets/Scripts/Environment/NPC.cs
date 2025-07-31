@@ -1,10 +1,9 @@
-﻿namespace GMTK2025.Environment
+﻿using Yarn.Unity;
+
+namespace GMTK2025.Environment
 {
-    public class NPC : InteractableObject 
+    public class NPC : InteractableDialogueObject 
     {
-        protected override void OnInteracted(IInteractor interactor)
-        {
-            
-        }
+        
     }
 }

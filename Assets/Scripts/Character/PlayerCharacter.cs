@@ -27,6 +27,8 @@ namespace GMTK2025.Characters
         private List<ITickable> tickables = new List<ITickable>();
         private bool movementEnabled = true;
 
+        public Wallet Wallet => wallet;
+
         public event UnityAction<IInteractor, IInteractable> OnFocus
         {
             add => interactionChecker.OnFocus += value;

@@ -2,6 +2,6 @@
 ---
 Would you like to end your shift?
     -> End the shift
-    <<exit ExitDoor>>
-    -> There's still more tickets to check 
+        <<exit CarriageExit>>
+    -> There's still more tickets to check
 ===

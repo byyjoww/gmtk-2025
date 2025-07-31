@@ -1,9 +1,11 @@
 using GMTK2025.Cameras;
 using GMTK2025.Characters;
 using GMTK2025.Environment;
+using GMTK2025.GameLoop;
 using GMTK2025.Inputs;
 using GMTK2025.UI;
 using SLS.Core;
+using SLS.Core.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
@@ -17,13 +19,22 @@ namespace GMTK2025.App
         [SerializeField] private new PlayerCamera camera = default;
         [SerializeField] private PlayerInput input = default;
         [SerializeField] private DialogueRunner dialogue = default;
-        [SerializeField] private Door exit = default;
+        [SerializeField] private Door waitingRoomExit = default;
+        [SerializeField] private Door carriageExit = default;
+
+        [Header("Databases")]
+        [SerializeField] private InteractableDialogueObject[] interactables = default;
 
         [Header("UI")]
         [SerializeField] private InteractionView interactionView = default;
+        [SerializeField] private QuotaView quotaView = default;
+
+        private LoopFactory loopFactory = default;
+        private GameState gameState = default;
 
         // view controllers
         private InteractionViewController interactionViewController = default;
+        private QuotaViewController quotaViewController = default;
 
         private List<ITickable> tickables = new List<ITickable>();
 
@@ -33,15 +44,24 @@ namespace GMTK2025.App
 
         private void Init()
         {
+            interactables.ForEach(x => x.Setup(dialogue));
+
             character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
+            loopFactory = new LoopFactory();
+            gameState = new GameState(character, loopFactory, waitingRoomExit, carriageExit);
+
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
+            
+            quotaViewController = new QuotaViewController(quotaView, character.Wallet);
+            quotaViewController?.Init();
         }
 
         private void Terminate()
         {
             interactionViewController?.Dispose();
+            quotaViewController?.Dispose();
         }
 
         public void RegisterOnTick(ITickable tickable)
@@ -60,6 +80,11 @@ namespace GMTK2025.App
             {
                 tickables[i].OnTick();
             }
+        }
+
+        private void OnValidate()
+        {
+            interactables = FindObjectsByType<InteractableDialogueObject>(FindObjectsSortMode.None);
         }
     }
 }

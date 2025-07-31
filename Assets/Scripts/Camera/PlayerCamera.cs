@@ -9,7 +9,8 @@ namespace GMTK2025.Cameras
     public class PlayerCamera : ExampleCharacterCamera
     {
         private IPlayerInput input = default;
-        private KinematicCharacterMotor motor = default;     
+        private KinematicCharacterMotor motor = default;
+        private int frameCount = 0;
 
         public void Setup(IPlayerInput input, PlayerCharacter character)
         {
@@ -31,13 +32,19 @@ namespace GMTK2025.Cameras
                 PlanarDirection = Vector3.ProjectOnPlane(PlanarDirection, motor.CharacterUp).normalized;
             }
 
+            if (frameCount < 5)
+            {
+                frameCount++;
+                return;
+            }
+
             HandleCameraInput();
         }
 
         private void HandleCameraInput()
         {
             if (input == null) { return; }
-
+            
             // Create the look input vector for the camera
             float mouseLookAxisUp = input.MouseLookUp;
             float mouseLookAxisRight = input.MouseLookRight;

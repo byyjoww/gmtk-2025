@@ -1,0 +1,22 @@
+﻿title: NPCJimmy
+---
+Jimmy: Hi there, what's the craic?
+    -> You suck!
+        <<jump YouSuck>>
+    -> What's the story?
+        <<jump WhatsTheStory>>
+===
+title: YouSuck
+position: -171,196
+---
+You: You suck!
+Jimmy: Fuck you!
+===
+title: WhatsTheStory
+position: 113,283
+---
+You: What's the story?
+Jimmy: Nothing much...
+You: Good stuff lad
+Jimmy: Thanks a million!
+===
