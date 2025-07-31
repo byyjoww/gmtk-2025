@@ -49,11 +49,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965865983593946872, guid: b712b6772c5c56649837d08e0fc42dd6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.784104
       objectReference: {fileID: 0}
     - target: {fileID: 7965865983593946872, guid: b712b6772c5c56649837d08e0fc42dd6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.81613785
       objectReference: {fileID: 0}
     - target: {fileID: 7965865983593946872, guid: b712b6772c5c56649837d08e0fc42dd6, type: 3}
       propertyPath: m_LocalScale.z
@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965865983593946872, guid: b712b6772c5c56649837d08e0fc42dd6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.103
       objectReference: {fileID: 0}
     - target: {fileID: 7965865983593946872, guid: b712b6772c5c56649837d08e0fc42dd6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -123,11 +123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203220418598281650, guid: 9703c4685d06f484ca9089b9e3599338, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.784104
       objectReference: {fileID: 0}
     - target: {fileID: 8203220418598281650, guid: 9703c4685d06f484ca9089b9e3599338, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.81613785
       objectReference: {fileID: 0}
     - target: {fileID: 8203220418598281650, guid: 9703c4685d06f484ca9089b9e3599338, type: 3}
       propertyPath: m_LocalScale.z
@@ -139,7 +139,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8203220418598281650, guid: 9703c4685d06f484ca9089b9e3599338, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.103
       objectReference: {fileID: 0}
     - target: {fileID: 8203220418598281650, guid: 9703c4685d06f484ca9089b9e3599338, type: 3}
       propertyPath: m_LocalPosition.z
