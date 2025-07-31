@@ -1,7 +1,7 @@
 ﻿title: ExitDoor
 ---
-Would you like to end your shift?
-    -> End the shift
+Would you like to move on to the next carriage?
+    -> Let's go
         <<exit CarriageExit>>
     -> There's still more tickets to check
 ===

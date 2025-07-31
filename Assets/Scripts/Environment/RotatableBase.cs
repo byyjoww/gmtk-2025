@@ -22,7 +22,7 @@ namespace GMTK2025.Environment
 
         private const float SPEED_CONSTANT = 30f;
 
-        [SerializeField] protected Transform rotatable = default;
+        [SerializeField] protected Transform target = default;
         [SerializeField] protected Config config = default;
         [SerializeField, ReadOnly] protected bool isRotating = false;
 
@@ -31,12 +31,12 @@ namespace GMTK2025.Environment
         protected EDirection targetDirection = default;
         protected Vector3 targetAxis = default;
 
-        protected virtual float currentAngle => rotatable.localEulerAngles.y;
+        protected virtual float currentAngle => target.localEulerAngles.y;
 
         protected override void Awake()
         {
             base.Awake();
-            rotatable.transform.localRotation = Quaternion.Euler(config.DefaultRotation);
+            target.transform.localRotation = Quaternion.Euler(config.DefaultRotation);
         }
 
         public override bool CanFocus(IInteractor interactor)
@@ -61,7 +61,7 @@ namespace GMTK2025.Environment
 
         protected virtual float GetCurrentAngle()
         {
-            return rotatable.localEulerAngles.y;
+            return target.localEulerAngles.y;
         }
 
         protected abstract float GetNextTargetAngle();
@@ -70,12 +70,12 @@ namespace GMTK2025.Environment
 
         protected virtual Vector3 GetNextTargetAxis()
         {
-            return rotatable.up;
+            return target.up;
         }
 
         protected virtual Vector3 GetFinalRotation()
         {
-            return rotatable.localEulerAngles.SetY(targetAngle);
+            return target.localEulerAngles.SetY(targetAngle);
         }
 
         protected virtual void DoRotate(int angleDirection)
@@ -89,14 +89,14 @@ namespace GMTK2025.Environment
             }
             else
             {
-                rotatable.Rotate(targetAxis, angle);
+                target.Rotate(targetAxis, angle);
                 lastKnownAngle = GetCurrentAngle();
             }
         }
 
         protected virtual void OnComplete()
         {
-            rotatable.localRotation = Quaternion.Euler(GetFinalRotation());
+            target.localRotation = Quaternion.Euler(GetFinalRotation());
             isRotating = false;
             lastKnownAngle = 0;
             targetDirection = EDirection.Undefined;
@@ -106,7 +106,7 @@ namespace GMTK2025.Environment
 
         protected virtual bool HasCompleted(float angleMoved)
         {
-            var angleRemaining = Quaternion.Angle(rotatable.localRotation, Quaternion.Euler(GetFinalRotation()));
+            var angleRemaining = Quaternion.Angle(target.localRotation, Quaternion.Euler(GetFinalRotation()));
             var nextAngleRotation = angleMoved + float.Epsilon;
             return Mathf.Abs(angleRemaining) <= Mathf.Abs(nextAngleRotation);
 

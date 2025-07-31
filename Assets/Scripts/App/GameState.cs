@@ -9,28 +9,30 @@ namespace GMTK2025.App
     {
         private PlayerCharacter character = default;
         private LoopFactory loopFactory = default;
-        private Door waitingRoomExit = default;
+        private InteractableObject carriageEntrance = default;
         private Door carriageExit = default;
 
         private Loop Current { get; set; }
 
         public event UnityAction OnLose;
 
-        public GameState(PlayerCharacter character, LoopFactory loopFactory, Door waitingRoomExit, Door carriageExit)
+        public GameState(PlayerCharacter character, LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
         {
             this.character = character;
             this.loopFactory = loopFactory;
-            this.waitingRoomExit = waitingRoomExit;
+            this.carriageEntrance = carriageEntrance;
             this.carriageExit = carriageExit;
 
             carriageExit.AddOnConfirm(OnExitCarriage);
-            waitingRoomExit.AddOnConfirm(OnExitWaitingRoom);
+            carriageEntrance.OnInteract.AddListener(OnExitWaitingRoom);
         }
 
         private void OnExitWaitingRoom()
         {
-            character.TeleportToPosition(waitingRoomExit.Destination);
-            StartLoop();
+            if (Current == null)
+            {
+                StartLoop();
+            }            
         }
 
         private void OnExitCarriage()

@@ -19,7 +19,7 @@ namespace GMTK2025.App
         [SerializeField] private new PlayerCamera camera = default;
         [SerializeField] private PlayerInput input = default;
         [SerializeField] private DialogueRunner dialogue = default;
-        [SerializeField] private Door waitingRoomExit = default;
+        [SerializeField] private InteractableObject carriageEntrance = default;
         [SerializeField] private Door carriageExit = default;
 
         [Header("Databases")]
@@ -50,7 +50,7 @@ namespace GMTK2025.App
             camera.Setup(input, character);
 
             loopFactory = new LoopFactory();
-            gameState = new GameState(character, loopFactory, waitingRoomExit, carriageExit);
+            gameState = new GameState(character, loopFactory, carriageEntrance, carriageExit);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
             
