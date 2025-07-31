@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4733431199437579512}
   - component: {fileID: 8881607028546694614}
   - component: {fileID: 2287497678512945837}
+  - component: {fileID: 3842956300226166177}
   m_Layer: 0
   m_Name: Rack
   m_TagString: Untagged
@@ -86,3 +87,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3842956300226166177
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854683274793688528}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.35089415, y: 2.1477494, z: 0.61417955}
+  m_Center: {x: -0.000038444992, y: -0.06404257, z: 0.06906732}
