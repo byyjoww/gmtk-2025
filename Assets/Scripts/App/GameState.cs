@@ -69,7 +69,6 @@ namespace GMTK2025.App
         public void StartGame()
         {
             // TODO: RESTART GAME
-            Debug.Log("starting game");
             camera.Lock();
             input.Enable();
             OnStart?.Invoke();
@@ -78,7 +77,6 @@ namespace GMTK2025.App
         private void EndGame()
         {
             // TODO: STOP LOOP
-            Debug.Log("ending game");
             input.Disable();
             camera.Unlock();            
         }
