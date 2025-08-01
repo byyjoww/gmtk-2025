@@ -156,7 +156,6 @@ namespace GMTK2025.App
             for (int i = Current.NPCs.Length; i-- > 0;)
             {
                 var profile = Current.NPCs[i];
-                Debug.Log($"clearing NPC {profile.npc.name}");
                 GameObject.Destroy(profile.npc.gameObject);
             }
 
