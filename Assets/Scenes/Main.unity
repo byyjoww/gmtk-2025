@@ -788,7 +788,22 @@ MonoBehaviour:
     presets:
     - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: fb03244694fc82d45bd679d70998883b, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 76c407e16d3213747b09220e5d4621db, type: 3}
+      gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: c2b448d9e108d0843ace28b8e18fb553, type: 3}
       gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 499351d6987da36418286092a4a49033, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 33abc03f4d07a2548be7b645097cd32b, type: 3}
+      gender: 1
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 86cf6a964a1850b408ef1432d8526b87, type: 3}
+      gender: 2
     npcs:
     - {fileID: 4875858395576552875, guid: 3dd7e7b49fa6b9c4baa5385142aa1327, type: 3}
     - {fileID: 8356999251131072128, guid: 686fcb63520c0774f9639dcd2c0e34cc, type: 3}

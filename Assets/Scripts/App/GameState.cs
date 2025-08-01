@@ -17,7 +17,7 @@ namespace GMTK2025.App
     {
         public static NPC CURRENT_DIALOGUE = default;
 
-        private const int STARTING_UNITS = 100;
+        private const int STARTING_UNITS = 10;
         private const int STARTING_QUOTA_UNITS = 3;
         private const int MAX_NPC_COUNT = 10;
         private const int QUOTA_UNIT_VALUE = 10;
@@ -64,6 +64,7 @@ namespace GMTK2025.App
             dialogue.onDialogueComplete.AddListener(OnDialogueEnded);
             dialogue.AddCommandHandler("collect", OnCollectMoneyFromNPC);
             dialogue.AddCommandHandler("kick", OnKickNPCFromTrain);
+            dialogue.AddCommandHandler("nothing", OnNothingNPCFromTrain);
             dialogue.AddCommandHandler("exit", OnExitCarriage);
             EndGame();
         }
@@ -111,6 +112,11 @@ namespace GMTK2025.App
             NumOfNPCsInTrain--;
             NPCProfile kicked = KnownNpcs.FirstOrDefault(x => x.npc == CURRENT_DIALOGUE);
             KnownNpcs.Remove(kicked);
+        }
+
+        private void OnNothingNPCFromTrain()
+        {
+            CURRENT_DIALOGUE.IsEnabled = false;
         }
 
         private void OnDialogueStarted()
