@@ -7,10 +7,11 @@ namespace GMTK2025.Environment
 {
     public class NPC : InteractableDialogueObject
     {
-        [SerializeField] private NPCNameGender gender = default;
+        [SerializeField] private NPCGender gender = default;
 
-        public NPCNameGender Gender => gender;
+        public NPCGender Gender => gender;
         public NPCProfile Profile { get; set; }
+        protected override string StartNode => Profile.preset.dialogue.name;
 
         protected override void OnDialogueStarted()
         {

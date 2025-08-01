@@ -18,7 +18,7 @@ namespace GMTK2025.GameLoop
             public struct NPCName
             {
                 public string Name;
-                public NPCNameGender Gender;
+                public NPCGender Gender;
             }
 
             public string emptyNametag = "Unoccupied";
@@ -34,7 +34,7 @@ namespace GMTK2025.GameLoop
         private Config config = default;
 
         private List<NPC> availableNPCs = default;
-        private List<NPCPreset> availablePresets = default;
+        private List<TextAsset> availableDialogues = default;
         private List<string> availableNames = default;
 
         public LoopFactory(PlayerCharacter character, DialogueRunner dialogue, Wallet collected, SpawnLocation[] spawnPositions, Config config)
@@ -46,7 +46,7 @@ namespace GMTK2025.GameLoop
             this.config = config;
 
             availableNPCs = config.npcs.ToList();
-            availablePresets = config.presets.ToList();
+            availableDialogues = config.presets.Select(x => x.dialogue).ToList();
             availableNames = config.names.Select(x => x.Name).ToList();
         }
 
@@ -70,6 +70,33 @@ namespace GMTK2025.GameLoop
             for (int i = 0; i < numOfTotalNPCs; i++)
             {
                 var profile = profiles[i];
+                if (availableDialogues.Count == 0)
+                {
+                    availableDialogues = config.presets.Select(x => x.dialogue).ToList();
+                }
+
+                // pick profile
+                var possiblePresets = config.presets
+                    .Where(x => availableDialogues.Contains(x.dialogue)
+                        && (x.gender == profile.template.Gender || x.gender == NPCGender.Both)
+                        && x.isKnown == knownNpcs.Contains(profile))
+                    .Select(x => x)
+                    .ToList();
+
+                if (possiblePresets.Count == 0)
+                {
+                    availableDialogues = config.presets.Select(x => x.dialogue).ToList();
+                    possiblePresets = config.presets
+                        .Where(x => availableDialogues.Contains(x.dialogue)
+                            && (x.gender == profile.template.Gender || x.gender == NPCGender.Both)
+                            && x.isKnown == knownNpcs.Contains(profile))
+                        .Select(x => x)
+                        .ToList();
+                }
+
+                profile.preset = possiblePresets.Random();
+                availableDialogues.Remove(profile.preset.dialogue);
+
                 var spawn = availableSpawns.Random();
                 availableSpawns.Remove(spawn);
                 availableSpawns.RemoveAll(x => spawn.Associated.Contains(x));
@@ -95,11 +122,6 @@ namespace GMTK2025.GameLoop
                     availableNPCs = config.npcs.ToList();
                 }
 
-                if (availablePresets.Count == 0)
-                {
-                    availablePresets = config.presets.ToList();
-                }
-
                 if (availableNames.Count == 0)
                 {
                     availableNames = config.names.Select(x => x.Name).ToList();
@@ -107,7 +129,7 @@ namespace GMTK2025.GameLoop
 
                 var template = availableNPCs.Random();
                 var possibleNames = config.names
-                    .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCNameGender.Both))
+                    .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCGender.Both))
                     .Select(x => x.Name)
                     .ToList();
 
@@ -115,7 +137,7 @@ namespace GMTK2025.GameLoop
                 {
                     availableNames = config.names.Select(x => x.Name).ToList();
                     possibleNames = config.names
-                        .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCNameGender.Both))
+                        .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCGender.Both))
                         .Select(x => x.Name)
                         .ToList();
                 }
@@ -123,12 +145,10 @@ namespace GMTK2025.GameLoop
                 var profile = new NPCProfile
                 {
                     template = template,
-                    preset = availablePresets.Random(),
                     name = possibleNames.Random(),
                 };
 
-                availableNPCs.Remove(profile.template);
-                availablePresets.Remove(profile.preset);
+                availableNPCs.Remove(profile.template);                
                 availableNames.Remove(profile.name);
                 profiles.Add(profile);
             }

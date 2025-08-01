@@ -15,6 +15,8 @@ namespace GMTK2025.Environment
 
         protected DialogueRunner dialogue = default;
 
+        protected virtual string StartNode => startNode;
+
         public void Setup(DialogueRunner dialogue)
         {
             this.dialogue = dialogue;
@@ -22,13 +24,13 @@ namespace GMTK2025.Environment
 
         protected override void OnInteracted(IInteractor interactor)
         {
-            if (startNode == NO_DIALOGUE)
+            if (StartNode == NO_DIALOGUE)
             {
                 return;
             }
 
             OnDialogueStarted();
-            dialogue.StartDialogue(startNode);
+            dialogue.StartDialogue(StartNode);
         }
 
         protected virtual void OnDialogueStarted()
