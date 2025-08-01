@@ -1,0 +1,26 @@
+﻿title: NPCJimmy4
+---
+
+You: Ticket inspector. 
+
+{$npcName}: Oh, right—yeah. Hang on. First week commuting, still getting used to it.
+{$npcName}: I had training at six this morning. I'm still half asleep.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayer>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayer>>
+
+===
+title: ChoosePayer4
+position: 113,283
+---
+{$npcName}: Thanks. My legs are wrecked. College and GAA — mad combo.
+<<collect>>
+===
+title: ChooseNonPayer4
+position: -171,196
+---
+{$npcName}: Sound. Another L for the week. Cheers anyway.
+<<kick>>
+===

@@ -1,0 +1,25 @@
+﻿title: NPCJimmy1
+---
+
+You: Can I see your ticket, please?
+{$npcName}: Ah, brings back memories. I used to punch tickets myself.
+{$npcName}: Ran this line for fifteen years. Different world back then.
+
+-> Looks like you're still doing it by the book.
+    <<jump ChoosePayer>>
+-> You haven't paid for this journey.
+    <<jump ChooseNonPayer>>
+
+===
+title: ChoosePayer1
+position: 113,283
+---
+{$npcName}: Can't help it. Muscle memory and all that.
+<<collect>>
+===
+title: ChooseNonPayer1
+position: -171,196
+---
+{$npcName}: That's a shame. Thought you'd understand, inspector.
+<<kick>>
+===

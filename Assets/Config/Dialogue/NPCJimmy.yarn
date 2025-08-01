@@ -1,23 +1,26 @@
 ﻿title: NPCJimmy
 ---
 <<declare $npcName = "DefaultName">>
-{$npcName}: Hi there, what's the craic?
-    -> You didn't pay
-        <<kick>>
-        <<jump ChooseNonPayer>>
-    -> All good
-        <<collect>>
-        <<jump ChoosePayer>>
-===
-title: ChooseNonPayer
-position: -171,196
----
-You: You didn't pay
-{$npcName}: Fuck you!
+
+You: Ticket, please.
+{$npcName}: Oh, yeah. Sorry. I was finishing a commission and nearly missed this.
+{$npcName}: Freelance doesn't wait for the train schedule.
+
+-> Looks like you managed to pay anyway. Respect.
+    <<jump ChoosePayer>>
+-> You haven't paid for this ride.
+    <<jump ChooseNonPayer>>
+
 ===
 title: ChoosePayer
 position: 113,283
 ---
-You: All good
-{$npcName}: Thanks
+{$npcName}: It's tight, but I try to do things right.
+<<collect>>
+===
+title: ChooseNonPayer
+position: -171,196
+---
+{$npcName}: Right. Of course. I should've known this wouldn't last.
+<<kick>>
 ===

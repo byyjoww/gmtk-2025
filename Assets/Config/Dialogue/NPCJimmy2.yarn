@@ -1,0 +1,24 @@
+﻿title: NPCJimmy2
+---
+
+You: Have your tickets ready!
+{$npcName}: Oh, sorry! My dog got loose and I nearly missed this train.
+
+-> Looks like you paid. Glad you made it.
+    <<jump ChoosePayer>>
+-> No ticket, no ride.
+    <<jump ChooseNonPayer>>
+
+===
+title: ChoosePayer2
+position: 113,283
+---
+{$npcName}: Thank you! It's been that kind of morning.
+<<collect>>
+===
+title: ChooseNonPayer2
+position: -171,196
+---
+{$npcName}: You know what? I don't need this. I'm getting off.
+<<kick>>
+===
