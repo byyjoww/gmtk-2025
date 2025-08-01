@@ -22,8 +22,9 @@ namespace GMTK2025.Environment
         [SerializeField, Space] private UnityEvent OnOpen = default;
         [SerializeField] private UnityEvent OnClose = default;
 
-        private bool isOpen = false;        
+        private bool isOpen = false;
         private Vector3? targetPosition = default;
+        private float? speed = default;
 
         private InteractionCollection openInteraction = default;
         private InteractionCollection closeInteraction = default;
@@ -32,7 +33,7 @@ namespace GMTK2025.Environment
         {
             openInteraction = new InteractionCollection(new VisibleInteraction("Close", 1, DoInteract));
             closeInteraction = new InteractionCollection(new VisibleInteraction("Open", 1, DoInteract));
-            
+
             isOpen = !config.StartClosed;
             target.position = GetNextPosition();
 
@@ -46,6 +47,23 @@ namespace GMTK2025.Environment
                 : openInteraction;
         }
 
+        public void Open(float speed)
+        {
+            ChangeState(true, speed);
+        }
+
+        public void Close(float speed)
+        {
+            ChangeState(false, speed);
+        }
+
+        public void ChangeState(bool newState, float speed)
+        {
+            this.speed = speed;
+            isOpen = newState;
+            targetPosition = GetNextPosition();
+        }
+
         private Vector3 GetNextPosition()
         {
             return isOpen
@@ -57,14 +75,13 @@ namespace GMTK2025.Environment
         {
             if (!targetPosition.HasValue)
             {
-                isOpen = !isOpen;
-                targetPosition = GetNextPosition();
+                ChangeState(!isOpen, config.Speed);
             }
         }
 
         protected virtual void DoSlide()
         {
-            float step = config.Speed * SPEED_CONSTANT * Time.deltaTime;
+            float step = speed.Value * SPEED_CONSTANT * Time.deltaTime;
             target.position = Vector3.MoveTowards(target.position, targetPosition.Value, step);
 
             if (Vector3.Distance(target.position, targetPosition.Value) < 0.001f)
@@ -77,6 +94,7 @@ namespace GMTK2025.Environment
         {
             target.position = targetPosition.Value;            
             targetPosition = null;
+            speed = null;
 
             if (isOpen) { OnOpen?.Invoke(); }
             else { OnClose?.Invoke(); }

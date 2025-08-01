@@ -22,9 +22,10 @@ namespace GMTK2025.App
         [SerializeField] private new PlayerCamera camera = default;
         [SerializeField] private PlayerInput input = default;
         [SerializeField] private DialogueRunner dialogue = default;
-        [SerializeField] private InteractableObject carriageEntrance = default;
+        [SerializeField] private Slidable carriageEntrance = default;
         [SerializeField] private Door carriageExit = default;
         [SerializeField] private Train train = default;
+        [SerializeField] private Transform startingPos = default;
         [SerializeField] private InteractableDialogueObject[] dialogues = default;
 
         [Header("UI")]
@@ -63,7 +64,7 @@ namespace GMTK2025.App
             wallet = new Wallet(0);
             collected = new Wallet(0);
             quota = new Wallet(0);
-            gameState = new GameState(character, camera, input, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
+            gameState = new GameState(character, camera, input, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit, startingPos);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);            
             

@@ -10,11 +10,11 @@ namespace GMTK2025.Inputs
         bool Jump { get; }
         bool CrouchDown { get; }
         bool CrouchUp { get; }
-
         float MouseLookUp { get; }
         float MouseLookRight { get; }
         float MouseScroll { get; }
         bool MouseSecondary { get; }
+        bool IsEnabled { get; }
 
         event UnityAction<int> OnInteractDown;
         event UnityAction<int> OnInteractUp;

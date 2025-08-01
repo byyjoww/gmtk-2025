@@ -26,6 +26,7 @@ namespace GMTK2025.Inputs
         public float MouseScroll => isEnabled ? -Input.GetAxis(MouseScrollInput) : 0f;
         public bool MousePrimary => isEnabled && Input.GetMouseButtonDown(0);
         public bool MouseSecondary => isEnabled && Input.GetMouseButtonDown(1);
+        public bool IsEnabled => isEnabled;
 
         public event UnityAction<int> OnInteractDown;
         public event UnityAction<int> OnInteractUp;

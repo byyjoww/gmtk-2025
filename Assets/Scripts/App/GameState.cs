@@ -16,7 +16,7 @@ namespace GMTK2025.App
 {
     public class GameState
     {
-        private const int STARTING_UNITS = 10;
+        private const int STARTING_UNITS = 0;
         private const int STARTING_QUOTA_UNITS = 3;
         private const int MAX_NPC_COUNT = 10;
         private const int QUOTA_UNIT_VALUE = 10;
@@ -30,19 +30,20 @@ namespace GMTK2025.App
         private Wallet collected = default;
         private Wallet quota = default;
         private LoopFactory loopFactory = default;
-        private InteractableObject carriageEntrance = default;
+        private Slidable carriageEntrance = default;
         private Door carriageExit = default;
+        private Transform startingPos = default;
 
         private Loop Current { get; set; }
-        private int LoopIndex { get; set; } = 0;
-        private int NumOfNPCsInTrain { get; set; } = MAX_NPC_COUNT;        
-        private HashSet<NPCProfile> KnownNpcs { get; set; } = new HashSet<NPCProfile>();
+        private int LoopIndex { get; set; }
+        private int NumOfNPCsInTrain { get; set; }        
+        private HashSet<NPCProfile> KnownNpcs { get; set; }
 
         public event UnityAction OnStart;
         public event UnityAction OnLose;
 
-        public GameState(PlayerCharacter character, PlayerCamera camera, PlayerInput input, Train train, DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota, 
-            LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
+        public GameState(PlayerCharacter character, PlayerCamera camera, PlayerInput input, Train train, DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota,
+            LoopFactory loopFactory, Slidable carriageEntrance, Door carriageExit, Transform startingPos)
         {
             this.character = character;
             this.camera = camera;
@@ -55,20 +56,20 @@ namespace GMTK2025.App
             this.loopFactory = loopFactory;
             this.carriageEntrance = carriageEntrance;
             this.carriageExit = carriageExit;
+            this.startingPos = startingPos;
 
             carriageExit.AddOnConfirm(OnExitCarriage);
             carriageEntrance.OnInteract.AddListener(OnExitWaitingRoom);
-            wallet.Add(STARTING_UNITS * QUOTA_UNIT_VALUE);
 
             dialogue.AddCommandHandler("collect", Collect);
             dialogue.AddCommandHandler("kick", Kick);
 
-            EndGame();
-        }        
+            EndGame();            
+        }
 
         public void StartGame()
         {
-            // TODO: RESTART GAME
+            Reset();
             camera.Lock();
             input.Enable();
             OnStart?.Invoke();
@@ -134,6 +135,31 @@ namespace GMTK2025.App
             return true;
         }
 
+        private void Reset()
+        {
+            character.TeleportToPosition(startingPos.position, startingPos.rotation);
+            camera.SetRotation(character.transform.forward);
+            carriageEntrance.Close(100);
+
+            Current = null;
+            LoopIndex = 0;
+            NumOfNPCsInTrain = MAX_NPC_COUNT;
+            KnownNpcs = new HashSet<NPCProfile>();
+            quota.Clear();
+            collected.Clear();
+            wallet.Set(STARTING_UNITS * QUOTA_UNIT_VALUE);
+        }
+
+        private void Collect()
+        {
+            collected.Add(QUOTA_UNIT_VALUE);
+        }
+
+        private void Kick()
+        {
+            collected.Add(QUOTA_UNIT_VALUE);
+        }
+
         private static int GetQuotaUnitsForLoop(int loopIndex, int maxQuotaUnits)
         {
             int units = STARTING_QUOTA_UNITS + (Mathf.FloorToInt((float)loopIndex / 3f));
@@ -168,16 +194,6 @@ namespace GMTK2025.App
             }
 
             return 5;
-        }
-
-        private void Collect()
-        {
-            collected.Add(QUOTA_UNIT_VALUE);
-        }
-
-        private void Kick()
-        {
-            collected.Add(QUOTA_UNIT_VALUE);
         }
     }
 }

@@ -4,6 +4,7 @@ using GMTK2025.Inputs;
 using GMTK2025.UI;
 using KinematicCharacterController.Examples;
 using SLS.Core;
+using SLS.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,7 +51,12 @@ namespace GMTK2025.Characters
 
         public void TeleportToPosition(Vector3 position)
         {
-            Motor.MoveCharacter(position);
+            TeleportToPosition(position, transform.rotation);
+        }
+
+        public void TeleportToPosition(Vector3 position, Quaternion rotation)
+        {
+            Motor.SetPositionAndRotation(position, rotation);
         }
 
         public void RegisterOnTick(ITickable tickable)
@@ -70,7 +76,7 @@ namespace GMTK2025.Characters
                 tickables[i].OnTick();
             }
 
-            if (input != null && camTransform != null && movementEnabled) 
+            if (input != null && input.IsEnabled && camTransform != null && movementEnabled) 
             {
                 HandleCharacterInput();
             }
@@ -78,6 +84,10 @@ namespace GMTK2025.Characters
 
         private void HandleCharacterInput()
         {
+            Vector3 rot = transform.eulerAngles.SetY(camTransform.eulerAngles.y);
+            Quaternion quat = Quaternion.Euler(rot);
+            Motor.RotateCharacter(quat);
+
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs
             {
                 // Build the CharacterInputs struct

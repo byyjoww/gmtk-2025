@@ -31,6 +31,11 @@ namespace GMTK2025.Cameras
             Cursor.lockState = CursorLockMode.None;
         }
 
+        public void SetRotation(Vector3 eulerProjectedOnPlane)
+        {
+            PlanarDirection = eulerProjectedOnPlane;
+        }
+
         private void LateUpdate()
         {
             // Handle rotating the camera along with physics movers
@@ -46,12 +51,16 @@ namespace GMTK2025.Cameras
                 return;
             }
 
-            HandleCameraInput();
+            var input = HandleCameraInput();
+            UpdateWithInput(Time.deltaTime, input.scroll, input.look);
         }
 
-        private void HandleCameraInput()
+        private (float scroll, Vector3 look) HandleCameraInput()
         {
-            if (input == null) { return; }
+            if (input == null || !input.IsEnabled) 
+            {
+                return (0f, Vector3.zero); 
+            }
             
             // Create the look input vector for the camera
             float mouseLookAxisUp = input.MouseLookUp;
@@ -69,15 +78,13 @@ namespace GMTK2025.Cameras
 #if UNITY_WEBGL
         scrollInput = 0f;
 #endif
-
-            // Apply inputs to the camera
-            UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
-
             // Handle toggling zoom level
             if (input.MouseSecondary)
             {
                 TargetDistance = (TargetDistance == 0f) ? DefaultDistance : 0f;
             }
+
+            return (scrollInput, lookInputVector);
         }
     }
 }
