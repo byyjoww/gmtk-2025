@@ -151,7 +151,7 @@ namespace GMTK2025.App
 
         private void Kick()
         {
-
+            collected.Add(QUOTA_UNIT_VALUE);
         }
     }
 }

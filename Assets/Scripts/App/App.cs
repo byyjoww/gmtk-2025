@@ -26,7 +26,6 @@ namespace GMTK2025.App
         [SerializeField] private Door carriageExit = default;
         [SerializeField] private Train train = default;
         [SerializeField] private InteractableDialogueObject[] dialogues = default;
-        [SerializeField] private NPC[] npcs = default;                
 
         [Header("UI")]
         [SerializeField] private InteractionView interactionView = default;
@@ -51,12 +50,12 @@ namespace GMTK2025.App
         private void Init()
         {
             dialogues.ForEach(x => x.Setup(dialogue));
-            npcs.ForEach(x => x.Setup(dialogue));
+            loopConfig.npcs.ForEach(x => x.Setup(dialogue));
 
             character.Setup(input, camera, dialogue);
             camera.Setup(input, character);
 
-            loopFactory = new LoopFactory(character, dialogue, collected, npcs, train.SpawnLocations, loopConfig);
+            loopFactory = new LoopFactory(character, dialogue, collected, train.SpawnLocations, loopConfig);
             wallet = new Wallet(0);
             collected = new Wallet(0);
             quota = new Wallet(0);

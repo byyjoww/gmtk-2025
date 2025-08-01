@@ -9,30 +9,47 @@ using Yarn.Unity;
 
 namespace GMTK2025.GameLoop
 {
+    
+
     public class LoopFactory
     {
         [System.Serializable]
         public class Config
         {
-            public string EmptyNametag = "Unoccupied";
+            [System.Serializable]
+            public struct NPCName 
+            {
+                public string Name;
+                public NPCNameGender Gender;                
+            }
+
+            public string emptyNametag = "Unoccupied";
+            public NPCName[] names = new NPCName[0];
             public NPCPreset[] presets = new NPCPreset[0];
+            public NPC[] npcs = default;
         }
 
         private PlayerCharacter character = default;
         private DialogueRunner dialogue = default;
-        private Wallet collected = default;
-        private NPC[] npcs = default;
+        private Wallet collected = default;        
         private SpawnLocation[] spawnPositions = default;
         private Config config = default;
 
-        public LoopFactory(PlayerCharacter character, DialogueRunner dialogue, Wallet collected, NPC[] npcs, SpawnLocation[] spawnPositions, Config config)
+        private List<NPC> availableNPCs = default;
+        private List<NPCPreset> availablePresets = default;
+        private List<string> availableNames = default;
+
+        public LoopFactory(PlayerCharacter character, DialogueRunner dialogue, Wallet collected, SpawnLocation[] spawnPositions, Config config)
         {
             this.character = character;
             this.dialogue = dialogue;
-            this.collected = collected;
-            this.npcs = npcs;
+            this.collected = collected;            
             this.spawnPositions = spawnPositions;
             this.config = config;
+
+            availableNPCs = config.npcs.ToList();
+            availablePresets = config.presets.ToList();
+            availableNames = config.names.Select(x => x.Name).ToList();
         }
 
         public Loop Create(int numOfTotalNPCs, int numOfKnownNPCs, HashSet<NPCProfile> knownNpcs)
@@ -41,7 +58,7 @@ namespace GMTK2025.GameLoop
 
             int numOfExistingNPCs = Mathf.Min(numOfTotalNPCs, numOfKnownNPCs);
             int numOfNewNPCs = Mathf.Max(0, numOfTotalNPCs - numOfKnownNPCs);
-            var profiles = CreateNPCProfilesForLoop(numOfNewNPCs);
+            var profiles = CreateNewNPCProfilesForLoop(numOfNewNPCs);
             var availableKnown = knownNpcs.ToHashSet();
 
             for (int i = 0; i < numOfExistingNPCs; i++)
@@ -62,23 +79,21 @@ namespace GMTK2025.GameLoop
                 profile.npc = GameObject.Instantiate(profile.template, spawn.Location.position, spawn.Location.rotation);
                 profile.npc.Setup(dialogue);
 
-                spawn.SetNametag(profile.Name);
+                spawn.SetNametag(profile.name);
             }
 
             return new Loop(character, collected, profiles.ToArray());
         }
 
-        private List<NPCProfile> CreateNPCProfilesForLoop(int numOfNpcs)
+        private List<NPCProfile> CreateNewNPCProfilesForLoop(int numOfNpcs)
         {
             var profiles = new List<NPCProfile>();
-            var availableNPCs = npcs.ToList();
-            var availablePresets = config.presets.ToList();
 
             for (int i = 0; i < numOfNpcs; i++)
             {
                 if (availableNPCs.Count == 0)
                 {
-                    availableNPCs = npcs.ToList();
+                    availableNPCs = config.npcs.ToList();
                 }
 
                 if (availablePresets.Count == 0)
@@ -86,14 +101,36 @@ namespace GMTK2025.GameLoop
                     availablePresets = config.presets.ToList();
                 }
 
+                if (availableNames.Count == 0)
+                {
+                    availableNames = config.names.Select(x => x.Name).ToList();
+                }
+
+                var template = availableNPCs.Random();
+                var possibleNames = config.names
+                    .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCNameGender.Both))
+                    .Select(x => x.Name)
+                    .ToList();
+
+                if (possibleNames.Count == 0)
+                {
+                    availableNames = config.names.Select(x => x.Name).ToList();
+                    possibleNames = config.names
+                        .Where(x => availableNames.Contains(x.Name) && (x.Gender == template.Gender || x.Gender == NPCNameGender.Both))
+                        .Select(x => x.Name)
+                        .ToList();
+                }
+
                 var profile = new NPCProfile
                 {
-                    template = availableNPCs.Random(),
+                    template = template,
                     preset = availablePresets.Random(),
+                    name = possibleNames.Random(),
                 };
 
                 availableNPCs.Remove(profile.template);
                 availablePresets.Remove(profile.preset);
+                availableNames.Remove(profile.name);
                 profiles.Add(profile);
             }
 
@@ -102,7 +139,7 @@ namespace GMTK2025.GameLoop
 
         private void ResetTrain()
         {
-            spawnPositions.ForEach(x => x.SetNametag(config.EmptyNametag));
+            spawnPositions.ForEach(x => x.SetNametag(config.emptyNametag));
         }
     }
 }
