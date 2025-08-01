@@ -3,8 +3,6 @@ using GMTK2025.Characters;
 using GMTK2025.Environment;
 using GMTK2025.GameLoop;
 using GMTK2025.Inputs;
-using GMTK2025.UI;
-using NUnit.Framework;
 using SLS.Core.Extensions;
 using System;
 using System.Collections.Generic;
@@ -16,7 +14,9 @@ namespace GMTK2025.App
 {
     public class GameState
     {
-        private const int STARTING_UNITS = 0;
+        public static NPC CURRENT_DIALOGUE = default;
+
+        private const int STARTING_UNITS = 100;
         private const int STARTING_QUOTA_UNITS = 3;
         private const int MAX_NPC_COUNT = 10;
         private const int QUOTA_UNIT_VALUE = 10;
@@ -25,7 +25,7 @@ namespace GMTK2025.App
         private PlayerCamera camera = default;
         private PlayerInput input = default;
         private Train train = default;
-        private DialogueRunner dialogue = default;       
+        private DialogueRunner dialogue = default;
         private Wallet wallet = default;
         private Wallet collected = default;
         private Wallet quota = default;
@@ -36,7 +36,7 @@ namespace GMTK2025.App
 
         private Loop Current { get; set; }
         private int LoopIndex { get; set; }
-        private int NumOfNPCsInTrain { get; set; }        
+        private int NumOfNPCsInTrain { get; set; }
         private HashSet<NPCProfile> KnownNpcs { get; set; }
 
         public event UnityAction OnStart;
@@ -58,13 +58,13 @@ namespace GMTK2025.App
             this.carriageExit = carriageExit;
             this.startingPos = startingPos;
 
-            carriageExit.AddOnConfirm(OnExitCarriage);
             carriageEntrance.OnInteract.AddListener(OnExitWaitingRoom);
-
-            dialogue.AddCommandHandler("collect", Collect);
-            dialogue.AddCommandHandler("kick", Kick);
-
-            EndGame();            
+            dialogue.onDialogueStart.AddListener(OnDialogueStarted);
+            dialogue.onDialogueComplete.AddListener(OnDialogueEnded);
+            dialogue.AddCommandHandler("collect", OnCollectMoneyFromNPC);
+            dialogue.AddCommandHandler("kick", OnKickNPCFromTrain);
+            dialogue.AddCommandHandler("exit", OnExitCarriage);
+            EndGame();
         }
 
         public void StartGame()
@@ -77,9 +77,8 @@ namespace GMTK2025.App
 
         private void EndGame()
         {
-            // TODO: STOP LOOP
             input.Disable();
-            camera.Unlock();            
+            camera.Unlock();
         }
 
         private void OnExitWaitingRoom()
@@ -98,6 +97,28 @@ namespace GMTK2025.App
                 StartLoop();
             }
         }
+
+        private void OnCollectMoneyFromNPC()
+        {
+            CURRENT_DIALOGUE.IsEnabled = false;
+            collected.Add(QUOTA_UNIT_VALUE);
+        }
+
+        private void OnKickNPCFromTrain()
+        {
+            CURRENT_DIALOGUE.IsEnabled = false;
+            NumOfNPCsInTrain--;
+        }
+
+        private void OnDialogueStarted()
+        {
+            
+        }
+
+        private void OnDialogueEnded()
+        {
+            CURRENT_DIALOGUE = null;
+        }                
 
         private void StartLoop()
         {
@@ -126,6 +147,7 @@ namespace GMTK2025.App
             for (int i = Current.NPCs.Length; i-- > 0;)
             {
                 var profile = Current.NPCs[i];
+                Debug.Log($"clearing NPC {profile.npc.name}");
                 GameObject.Destroy(profile.npc.gameObject);
             }
 
@@ -148,16 +170,6 @@ namespace GMTK2025.App
             quota.Clear();
             collected.Clear();
             wallet.Set(STARTING_UNITS * QUOTA_UNIT_VALUE);
-        }
-
-        private void Collect()
-        {
-            collected.Add(QUOTA_UNIT_VALUE);
-        }
-
-        private void Kick()
-        {
-            collected.Add(QUOTA_UNIT_VALUE);
         }
 
         private static int GetQuotaUnitsForLoop(int loopIndex, int maxQuotaUnits)

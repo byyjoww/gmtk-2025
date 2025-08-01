@@ -1,6 +1,7 @@
 ﻿title: NPCJimmy
 ---
-Jimmy: Hi there, what's the craic?
+<<declare $npcName = "DefaultName">>
+{$npcName}: Hi there, what's the craic?
     -> You didn't pay
         <<kick>>
         <<jump ChooseNonPayer>>
@@ -12,11 +13,11 @@ title: ChooseNonPayer
 position: -171,196
 ---
 You: You didn't pay
-Jimmy: Fuck you!
+{$npcName}: Fuck you!
 ===
 title: ChoosePayer
 position: 113,283
 ---
 You: All good
-Jimmy: Thanks
+{$npcName}: Thanks
 ===

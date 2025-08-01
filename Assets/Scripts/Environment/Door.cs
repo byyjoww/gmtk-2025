@@ -8,11 +8,5 @@ namespace GMTK2025.Environment
         [SerializeField] private Transform destination = default;
         
         public Vector2 Destination => destination.position;
-
-        [YarnCommand("exit")]
-        public void Exit()
-        {
-            onConfirm?.Invoke();
-        }
     }
 }

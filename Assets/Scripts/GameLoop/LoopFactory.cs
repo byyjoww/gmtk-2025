@@ -76,6 +76,7 @@ namespace GMTK2025.GameLoop
 
                 profile.npc = GameObject.Instantiate(profile.template, spawn.Location.position, spawn.Location.rotation);
                 profile.npc.Setup(dialogue);
+                profile.npc.Profile = profile;
 
                 spawn.SetNametag(profile.name);
             }

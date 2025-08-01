@@ -13,15 +13,7 @@ namespace GMTK2025.Environment
         [SerializeField, YarnNode(nameof(yarnProject))]
         private string startNode = NO_DIALOGUE;
 
-        private DialogueRunner dialogue = default;
-
-        protected UnityEvent onConfirm = new UnityEvent();
-
-        public void AddOnConfirm(UnityAction onExit)
-        {
-            onConfirm.RemoveAllListeners();
-            onConfirm.AddListener(onExit);
-        }
+        protected DialogueRunner dialogue = default;
 
         public void Setup(DialogueRunner dialogue)
         {
@@ -35,13 +27,18 @@ namespace GMTK2025.Environment
                 return;
             }
 
+            OnDialogueStarted();
             dialogue.StartDialogue(startNode);
+        }
+
+        protected virtual void OnDialogueStarted()
+        {
+
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            onConfirm.RemoveAllListeners();
         }
     }
 }
