@@ -725,19 +725,25 @@ MonoBehaviour:
   loopConfig:
     emptyNametag: Unoccupied
     names:
-    - Name: Suzy
+    - Name: Aoife
       Gender: 1
-    - Name: Sally
+    - Name: Saoirse
       Gender: 1
-    - Name: Robert
+    - Name: Maeve
+      Gender: 1
+    - Name: Niamh
+      Gender: 1
+    - Name: Tadhg
       Gender: 0
-    - Name: Gerald
+    - Name: Cian
+      Gender: 0
+    - Name: Eoin
       Gender: 0
     - Name: Quinn
+      Gender: 0
+    - Name: May
       Gender: 2
-    - Name: Suzan
-      Gender: 2
-    - Name: Suzan
+    - Name: Avery
       Gender: 2
     presets:
     - value: random

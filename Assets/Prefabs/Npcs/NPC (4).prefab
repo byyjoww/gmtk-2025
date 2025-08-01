@@ -172,6 +172,7 @@ MonoBehaviour:
       m_Calls: []
   yarnProject: {fileID: 7545569452688597077, guid: 6319fa04cf35dfc44bc23085c335d8c5, type: 3}
   startNode: NPCJimmy
+  gender: 2
 --- !u!65 &8594729383641866747
 BoxCollider:
   m_ObjectHideFlags: 0
