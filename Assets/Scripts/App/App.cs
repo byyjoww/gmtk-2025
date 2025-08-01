@@ -25,7 +25,7 @@ namespace GMTK2025.App
         [SerializeField] private InteractableObject carriageEntrance = default;
         [SerializeField] private Door carriageExit = default;
         [SerializeField] private Train train = default;
-        [SerializeField] private InteractableDialogueObject[] interactables = default;
+        [SerializeField] private InteractableDialogueObject[] dialogues = default;
         [SerializeField] private NPC[] npcs = default;                
 
         [Header("UI")]
@@ -50,7 +50,7 @@ namespace GMTK2025.App
 
         private void Init()
         {
-            interactables.ForEach(x => x.Setup(dialogue));
+            dialogues.ForEach(x => x.Setup(dialogue));
             npcs.ForEach(x => x.Setup(dialogue));
 
             character.Setup(input, camera, dialogue);
@@ -94,7 +94,7 @@ namespace GMTK2025.App
 
         private void OnValidate()
         {
-            interactables = FindObjectsByType<InteractableDialogueObject>(FindObjectsSortMode.None);
+            dialogues = FindObjectsByType<InteractableDialogueObject>(FindObjectsSortMode.None);
             // npcs = FindObjectsByType<NPC>(FindObjectsSortMode.None);
         }
     }

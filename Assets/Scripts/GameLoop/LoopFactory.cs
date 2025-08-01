@@ -71,6 +71,16 @@ namespace GMTK2025.GameLoop
 
             for (int i = 0; i < numOfNpcs; i++)
             {
+                if (availableNPCs.Count == 0)
+                {
+                    availableNPCs = npcs.ToList();
+                }
+
+                if (availablePresets.Count == 0)
+                {
+                    availablePresets = config.presets.ToList();
+                }
+
                 var profile = new NPCProfile
                 {
                     template = availableNPCs.Random(),

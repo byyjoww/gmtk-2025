@@ -3,6 +3,6 @@
     [System.Serializable]
     public struct NPCPreset
     {
-
+        public string value;
     }
 }
