@@ -1,22 +1,22 @@
 ﻿title: NPCJimmy
 ---
 Jimmy: Hi there, what's the craic?
-    -> You suck!
-        <<jump YouSuck>>
-    -> What's the story?
-        <<jump WhatsTheStory>>
+    -> You didn't pay
+        <<kick>>
+        <<jump ChooseNonPayer>>
+    -> All good
+        <<collect>>
+        <<jump ChoosePayer>>
 ===
-title: YouSuck
+title: ChooseNonPayer
 position: -171,196
 ---
-You: You suck!
+You: You didn't pay
 Jimmy: Fuck you!
 ===
-title: WhatsTheStory
+title: ChoosePayer
 position: 113,283
 ---
-You: What's the story?
-Jimmy: Nothing much...
-You: Good stuff lad
-Jimmy: Thanks a million!
+You: All good
+Jimmy: Thanks
 ===

@@ -60,7 +60,7 @@ namespace GMTK2025.App
             wallet = new Wallet(0);
             collected = new Wallet(0);
             quota = new Wallet(0);
-            gameState = new GameState(character, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
+            gameState = new GameState(character, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
             

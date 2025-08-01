@@ -3,9 +3,11 @@ using GMTK2025.Environment;
 using GMTK2025.GameLoop;
 using NUnit.Framework;
 using SLS.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Yarn.Unity;
 
 namespace GMTK2025.App
 {
@@ -17,6 +19,8 @@ namespace GMTK2025.App
         private const int QUOTA_UNIT_VALUE = 10;
 
         private PlayerCharacter character = default;
+        private Train train = default;
+        private DialogueRunner dialogue = default;       
         private Wallet wallet = default;
         private Wallet collected = default;
         private Wallet quota = default;
@@ -31,9 +35,11 @@ namespace GMTK2025.App
 
         public event UnityAction OnLose;
 
-        public GameState(PlayerCharacter character, Wallet wallet, Wallet collected, Wallet quota, LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
+        public GameState(PlayerCharacter character, Train train ,DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota, LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
         {
             this.character = character;
+            this.train = train;
+            this.dialogue = dialogue;
             this.wallet = wallet;
             this.collected = collected;
             this.quota = quota;
@@ -44,6 +50,9 @@ namespace GMTK2025.App
             carriageExit.AddOnConfirm(OnExitCarriage);
             carriageEntrance.OnInteract.AddListener(OnExitWaitingRoom);
             wallet.Add(STARTING_UNITS * QUOTA_UNIT_VALUE);
+
+            dialogue.AddCommandHandler("collect", Collect);
+            dialogue.AddCommandHandler("kick", Kick);
         }
 
         private void OnExitWaitingRoom()
@@ -66,7 +75,8 @@ namespace GMTK2025.App
         private void StartLoop()
         {
             int numOfKnownNPCsToUse = GetNumOfKnownNPCsToSpawn(LoopIndex);
-            quota.Set(GetQuotaUnitsForLoop(LoopIndex, MAX_NPC_COUNT));
+            quota.Set(GetQuotaUnitsForLoop(LoopIndex, MAX_NPC_COUNT) * QUOTA_UNIT_VALUE);
+            train.SetCarriageName(GetCarriageName(LoopIndex));
             Current = loopFactory.Create(NumOfNPCsInTrain, numOfKnownNPCsToUse, KnownNpcs);
             Current.NPCs.ForEach(x => KnownNpcs.Add(x));
         }
@@ -103,6 +113,22 @@ namespace GMTK2025.App
             return Mathf.Min(units, maxQuotaUnits);
         }
 
+        private static string GetCarriageName(int loopIndex)
+        {
+            string identifier = string.Empty;
+            var loopNumber = loopIndex + 1;
+
+            while (loopNumber > 0)
+            {
+                int modulo = (loopNumber - 1) % 26;
+                identifier = Convert.ToChar('A' + modulo) + identifier;
+                loopNumber = (loopNumber - modulo) / 26;
+            }
+
+            return $"Carriage {identifier}";
+            // return $"{loopIndex + 1}";
+        }
+
         private static int GetNumOfKnownNPCsToSpawn(int loopIndex)
         {
             if (loopIndex == 0)
@@ -116,6 +142,16 @@ namespace GMTK2025.App
             }
 
             return 5;
+        }
+
+        private void Collect()
+        {
+            collected.Add(QUOTA_UNIT_VALUE);
+        }
+
+        private void Kick()
+        {
+
         }
     }
 }

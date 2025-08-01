@@ -12,9 +12,10 @@ namespace GMTK2025.GameLoop
     public class LoopFactory
     {
         [System.Serializable]
-        public struct Config
+        public class Config
         {
-            public NPCPreset[] presets;
+            public string EmptyNametag = "Unoccupied";
+            public NPCPreset[] presets = new NPCPreset[0];
         }
 
         private PlayerCharacter character = default;
@@ -36,6 +37,8 @@ namespace GMTK2025.GameLoop
 
         public Loop Create(int numOfTotalNPCs, int numOfKnownNPCs, HashSet<NPCProfile> knownNpcs)
         {
+            ResetTrain();
+
             int numOfExistingNPCs = Mathf.Min(numOfTotalNPCs, numOfKnownNPCs);
             int numOfNewNPCs = Mathf.Max(0, numOfTotalNPCs - numOfKnownNPCs);
             var profiles = CreateNPCProfilesForLoop(numOfNewNPCs);
@@ -58,6 +61,8 @@ namespace GMTK2025.GameLoop
 
                 profile.npc = GameObject.Instantiate(profile.template, spawn.Location.position, spawn.Location.rotation);
                 profile.npc.Setup(dialogue);
+
+                spawn.SetNametag(profile.Name);
             }
 
             return new Loop(character, collected, profiles.ToArray());
@@ -93,6 +98,11 @@ namespace GMTK2025.GameLoop
             }
 
             return profiles;
+        }
+
+        private void ResetTrain()
+        {
+            spawnPositions.ForEach(x => x.SetNametag(config.EmptyNametag));
         }
     }
 }

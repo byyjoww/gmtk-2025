@@ -8,5 +8,7 @@ namespace GMTK2025.GameLoop
         public NPC template = default;
         public NPC npc = default;
         public NPCPreset preset = default;
+
+        public string Name = "Robert";
     }
 }
