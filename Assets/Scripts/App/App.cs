@@ -17,6 +17,9 @@ namespace GMTK2025.App
         [Header("Config")]
         [SerializeField] private LoopFactory.Config loopConfig = new LoopFactory.Config();
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] trainTrackSfx = default;
+
         [Header("Components")]
         [SerializeField] private PlayerCharacter character = default;
         [SerializeField] private new PlayerCamera camera = default;
@@ -26,6 +29,7 @@ namespace GMTK2025.App
         [SerializeField] private Door carriageExit = default;
         [SerializeField] private Train train = default;
         [SerializeField] private Transform startingPos = default;
+        [SerializeField] private AudioSource trainTrackAudioSource = default;
         [SerializeField] private InteractableDialogueObject[] dialogues = default;
 
         [Header("UI")]
@@ -64,7 +68,7 @@ namespace GMTK2025.App
             wallet = new Wallet(0);
             collected = new Wallet(0);
             quota = new Wallet(0);
-            gameState = new GameState(character, camera, input, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit, startingPos);
+            gameState = new GameState(character, camera, input, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit, startingPos, trainTrackSfx, trainTrackAudioSource);
 
             interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);            
             

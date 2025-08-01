@@ -34,6 +34,8 @@ namespace GMTK2025.App
         private Slidable carriageEntrance = default;
         private Door carriageExit = default;
         private Transform startingPos = default;
+        private AudioClip[] trainTrackSfx = default;
+        private AudioSource trainTrackAudioSource = default;
 
         private Loop Current { get; set; }
         private int LoopIndex { get; set; }
@@ -44,7 +46,7 @@ namespace GMTK2025.App
         public event UnityAction OnLose;
 
         public GameState(PlayerCharacter character, PlayerCamera camera, PlayerInput input, Train train, DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota,
-            LoopFactory loopFactory, Slidable carriageEntrance, Door carriageExit, Transform startingPos)
+            LoopFactory loopFactory, Slidable carriageEntrance, Door carriageExit, Transform startingPos, AudioClip[] trainTrackSfx, AudioSource trainTrackAudioSource)
         {
             this.character = character;
             this.camera = camera;
@@ -58,6 +60,8 @@ namespace GMTK2025.App
             this.carriageEntrance = carriageEntrance;
             this.carriageExit = carriageExit;
             this.startingPos = startingPos;
+            this.trainTrackSfx = trainTrackSfx;
+            this.trainTrackAudioSource = trainTrackAudioSource;
 
             carriageEntrance.OnInteract.AddListener(OnExitWaitingRoom);
             dialogue.onDialogueStart.AddListener(OnDialogueStarted);
@@ -72,6 +76,7 @@ namespace GMTK2025.App
         public void StartGame()
         {
             Reset();
+            StartAudioLoop();
             camera.Lock();
             input.Enable();
             OnStart?.Invoke();
@@ -79,6 +84,7 @@ namespace GMTK2025.App
 
         private void EndGame()
         {
+            StopAudioLoop();
             input.Disable();
             camera.Unlock();
         }
@@ -142,6 +148,12 @@ namespace GMTK2025.App
         {
             if (Current == null) { return true; }
 
+            for (int i = Current.NPCs.Length; i-- > 0;)
+            {
+                var profile = Current.NPCs[i];
+                GameObject.Destroy(profile.npc.gameObject);
+            }
+
             int debt = quota.Current - collected.Current;
             if (!wallet.Remove(debt))
             {
@@ -152,13 +164,6 @@ namespace GMTK2025.App
 
             NumOfNPCsInTrain -= Current.Kicked;
             LoopIndex++;
-
-            for (int i = Current.NPCs.Length; i-- > 0;)
-            {
-                var profile = Current.NPCs[i];
-                GameObject.Destroy(profile.npc.gameObject);
-            }
-
             quota.Clear();
             collected.Clear();
             Current = null;
@@ -169,7 +174,7 @@ namespace GMTK2025.App
         {
             character.TeleportToPosition(startingPos.position, startingPos.rotation);
             camera.SetRotation(character.transform.forward);
-            carriageEntrance.Close(100);
+            carriageEntrance.Close(100);            
 
             Current = null;
             LoopIndex = 0;
@@ -178,6 +183,18 @@ namespace GMTK2025.App
             quota.Clear();
             collected.Clear();
             wallet.Set(STARTING_UNITS * QUOTA_UNIT_VALUE);
+        }
+
+        private void StartAudioLoop()
+        {
+            trainTrackAudioSource.loop = true;
+            trainTrackAudioSource.clip = trainTrackSfx.Random();
+            trainTrackAudioSource.Play();
+        }
+
+        private void StopAudioLoop()
+        {
+            trainTrackAudioSource.Stop();
         }
 
         private static int GetQuotaUnitsForLoop(int loopIndex, int maxQuotaUnits)
