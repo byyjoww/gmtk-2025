@@ -15,12 +15,20 @@ namespace GMTK2025.Cameras
         public void Setup(IPlayerInput input, PlayerCharacter character)
         {
             this.input = input;
-            this.motor = character.Motor;
-
-            Cursor.lockState = CursorLockMode.Locked;
+            this.motor = character.Motor;            
             SetFollowTransform(character.CameraFollowPoint);
             IgnoredColliders.Clear();
-            IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());
+            IgnoredColliders.AddRange(character.GetComponentsInChildren<Collider>());            
+        }
+
+        public void Lock()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void Unlock()
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void LateUpdate()

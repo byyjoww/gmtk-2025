@@ -1,4 +1,5 @@
-﻿using GMTK2025.Characters;
+﻿using GMTK2025.App;
+using GMTK2025.Characters;
 using SLS.UI;
 using System;
 
@@ -7,18 +8,20 @@ namespace GMTK2025.UI
     public class QuotaViewController : ViewController<QuotaView, Wallet>
     {
         private Wallet quota = default;
-        private Wallet collected = default;        
+        private Wallet collected = default;
+        private GameState gameState = default;
 
-        protected override bool showOnInit => true;
-
-        public QuotaViewController(QuotaView view, Wallet model, Wallet quota, Wallet collected) : base(view, model)
+        public QuotaViewController(QuotaView view, Wallet model, Wallet quota, Wallet collected, GameState gameState) : base(view, model)
         {
             this.quota = quota;
-            this.collected = collected;            
+            this.collected = collected;      
+            this.gameState = gameState;
         }
 
         protected override void OnInit()
         {
+            gameState.OnStart += Show;
+            gameState.OnLose += Hide;
             model.OnValueChanged += OnValueChanged;
             quota.OnValueChanged += OnValueChanged;
             collected.OnValueChanged += OnValueChanged;
@@ -26,6 +29,8 @@ namespace GMTK2025.UI
 
         protected override void OnDispose()
         {
+            gameState.OnStart -= Show;
+            gameState.OnLose -= Hide;
             model.OnValueChanged -= OnValueChanged;
             quota.OnValueChanged -= OnValueChanged;
             collected.OnValueChanged -= OnValueChanged;

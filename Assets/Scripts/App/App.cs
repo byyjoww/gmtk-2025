@@ -30,6 +30,8 @@ namespace GMTK2025.App
         [Header("UI")]
         [SerializeField] private InteractionView interactionView = default;
         [SerializeField] private QuotaView quotaView = default;
+        [SerializeField] private StartGameView startGameView = default;
+        [SerializeField] private EndGameView endGameView = default;
 
         private LoopFactory loopFactory = default;
         private GameState gameState = default;
@@ -40,6 +42,8 @@ namespace GMTK2025.App
         // view controllers
         private InteractionViewController interactionViewController = default;
         private QuotaViewController quotaViewController = default;
+        private StartGameViewController startGameViewController = default;
+        private EndGameViewController endGameViewController = default;
 
         private List<ITickable> tickables = new List<ITickable>();
 
@@ -59,18 +63,26 @@ namespace GMTK2025.App
             wallet = new Wallet(0);
             collected = new Wallet(0);
             quota = new Wallet(0);
-            gameState = new GameState(character, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
+            gameState = new GameState(character, camera, input, train, dialogue, wallet, collected, quota, loopFactory, carriageEntrance, carriageExit);
 
-            interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);
+            interactionViewController = new InteractionViewController(new IInteractionModel[] { character }, interactionView, input, this);            
             
-            quotaViewController = new QuotaViewController(quotaView, wallet, collected, quota);
+            quotaViewController = new QuotaViewController(quotaView, wallet, quota, collected, gameState);
             quotaViewController?.Init();
+
+            startGameViewController = new StartGameViewController(startGameView, gameState);
+            startGameViewController?.Init();
+
+            endGameViewController = new EndGameViewController(endGameView, gameState);
+            endGameViewController?.Init();
         }
 
         private void Terminate()
         {
             interactionViewController?.Dispose();
             quotaViewController?.Dispose();
+            startGameViewController?.Dispose();
+            endGameViewController?.Dispose();
         }
 
         public void RegisterOnTick(ITickable tickable)

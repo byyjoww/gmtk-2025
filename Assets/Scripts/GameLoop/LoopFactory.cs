@@ -9,18 +9,16 @@ using Yarn.Unity;
 
 namespace GMTK2025.GameLoop
 {
-    
-
     public class LoopFactory
     {
         [System.Serializable]
         public class Config
         {
             [System.Serializable]
-            public struct NPCName 
+            public struct NPCName
             {
                 public string Name;
-                public NPCNameGender Gender;                
+                public NPCNameGender Gender;
             }
 
             public string emptyNametag = "Unoccupied";
@@ -31,7 +29,7 @@ namespace GMTK2025.GameLoop
 
         private PlayerCharacter character = default;
         private DialogueRunner dialogue = default;
-        private Wallet collected = default;        
+        private Wallet collected = default;
         private SpawnLocation[] spawnPositions = default;
         private Config config = default;
 
@@ -43,7 +41,7 @@ namespace GMTK2025.GameLoop
         {
             this.character = character;
             this.dialogue = dialogue;
-            this.collected = collected;            
+            this.collected = collected;
             this.spawnPositions = spawnPositions;
             this.config = config;
 

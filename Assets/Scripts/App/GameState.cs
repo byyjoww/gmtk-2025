@@ -1,6 +1,9 @@
-﻿using GMTK2025.Characters;
+﻿using GMTK2025.Cameras;
+using GMTK2025.Characters;
 using GMTK2025.Environment;
 using GMTK2025.GameLoop;
+using GMTK2025.Inputs;
+using GMTK2025.UI;
 using NUnit.Framework;
 using SLS.Core.Extensions;
 using System;
@@ -19,6 +22,8 @@ namespace GMTK2025.App
         private const int QUOTA_UNIT_VALUE = 10;
 
         private PlayerCharacter character = default;
+        private PlayerCamera camera = default;
+        private PlayerInput input = default;
         private Train train = default;
         private DialogueRunner dialogue = default;       
         private Wallet wallet = default;
@@ -33,11 +38,15 @@ namespace GMTK2025.App
         private int NumOfNPCsInTrain { get; set; } = MAX_NPC_COUNT;        
         private HashSet<NPCProfile> KnownNpcs { get; set; } = new HashSet<NPCProfile>();
 
+        public event UnityAction OnStart;
         public event UnityAction OnLose;
 
-        public GameState(PlayerCharacter character, Train train ,DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota, LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
+        public GameState(PlayerCharacter character, PlayerCamera camera, PlayerInput input, Train train, DialogueRunner dialogue, Wallet wallet, Wallet collected, Wallet quota, 
+            LoopFactory loopFactory, InteractableObject carriageEntrance, Door carriageExit)
         {
             this.character = character;
+            this.camera = camera;
+            this.input = input;
             this.train = train;
             this.dialogue = dialogue;
             this.wallet = wallet;
@@ -53,6 +62,25 @@ namespace GMTK2025.App
 
             dialogue.AddCommandHandler("collect", Collect);
             dialogue.AddCommandHandler("kick", Kick);
+
+            EndGame();
+        }        
+
+        public void StartGame()
+        {
+            // TODO: RESTART GAME
+            Debug.Log("starting game");
+            camera.Lock();
+            input.Enable();
+            OnStart?.Invoke();
+        }
+
+        private void EndGame()
+        {
+            // TODO: STOP LOOP
+            Debug.Log("ending game");
+            input.Disable();
+            camera.Unlock();            
         }
 
         private void OnExitWaitingRoom()
@@ -65,9 +93,9 @@ namespace GMTK2025.App
 
         private void OnExitCarriage()
         {
-            character.TeleportToPosition(carriageExit.Destination);
             if (FinishLoop())
             {
+                character.TeleportToPosition(carriageExit.Destination);
                 StartLoop();
             }
         }
@@ -88,6 +116,7 @@ namespace GMTK2025.App
             int debt = quota.Current - collected.Current;
             if (!wallet.Remove(debt))
             {
+                EndGame();
                 OnLose?.Invoke();
                 return false;
             }
@@ -126,7 +155,6 @@ namespace GMTK2025.App
             }
 
             return $"Carriage {identifier}";
-            // return $"{loopIndex + 1}";
         }
 
         private static int GetNumOfKnownNPCsToSpawn(int loopIndex)
