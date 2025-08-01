@@ -6,6 +6,7 @@ using GMTK2025.Inputs;
 using SLS.Core.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using Yarn.Unity;
@@ -108,6 +109,8 @@ namespace GMTK2025.App
         {
             CURRENT_DIALOGUE.IsEnabled = false;
             NumOfNPCsInTrain--;
+            NPCProfile kicked = KnownNpcs.FirstOrDefault(x => x.npc == CURRENT_DIALOGUE);
+            KnownNpcs.Remove(kicked);
         }
 
         private void OnDialogueStarted()
