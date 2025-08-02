@@ -783,7 +783,7 @@ MonoBehaviour:
       Gender: 2
     - Name: River
       Gender: 2
-    - Name: Kai
+    - Name: June
       Gender: 2
     presets:
     - isKnown: 0
@@ -795,13 +795,13 @@ MonoBehaviour:
     - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: 76c407e16d3213747b09220e5d4621db, type: 3}
       gender: 0
-    - isKnown: 1
+    - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: 4a7e4841d2794d849b8fff1fb34f3426, type: 3}
       gender: 0
-    - isKnown: 1
+    - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: c2b448d9e108d0843ace28b8e18fb553, type: 3}
       gender: 1
-    - isKnown: 1
+    - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: 0ccb883e41927164889fd2965ef42bb4, type: 3}
       gender: 1
     - isKnown: 0
@@ -810,6 +810,42 @@ MonoBehaviour:
     - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: d20168a5b3814364db861ab392e71276, type: 3}
       gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 33abc03f4d07a2548be7b645097cd32b, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: c302850ed01952b478cd59dce379721c, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 86cf6a964a1850b408ef1432d8526b87, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 15bdc16541227814e8dce8422457e3f0, type: 3}
+      gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 444b39a3d310bf94b880fc6c34f742b3, type: 3}
+      gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 4c3d505eed72a3745b566db19008e533, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: b78614f252e1a8c4f86d91a338ae4934, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: aa5da5c4f60b7284794c4603b70c7e19, type: 3}
+      gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 8f05a5a95c68cce4892d14efc4b4959e, type: 3}
+      gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: b301f798bbc624d4dbf25de71d289dab, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 29d930c972c80044480a190d5eaef9de, type: 3}
+      gender: 0
     npcs:
     - {fileID: 4875858395576552875, guid: 3dd7e7b49fa6b9c4baa5385142aa1327, type: 3}
     - {fileID: 8356999251131072128, guid: 686fcb63520c0774f9639dcd2c0e34cc, type: 3}

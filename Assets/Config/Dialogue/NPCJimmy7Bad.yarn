@@ -1,0 +1,26 @@
+﻿title: NPCJimmy7Bad
+// May - Non-Binary
+---
+You: Can I see your ticket please.
+{$npcName}: Oh, uh. Sorry. I thought I'd… already done that?
+{$npcName}: Been kind of off lately. Home stuff. Complicated.
+
+-> Looks like it's all fine.
+    <<jump ChoosePayer7Bad>>
+-> There's no record of a payment. You'll need to pay.
+    <<jump ChooseNonPayer7Bad>>
+===
+
+title: ChoosePayer7Bad
+position: 113,283
+---
+{$npcName}: Thanks. I'm just trying not to mess up more things right now.
+<<nothing>>
+===
+
+title: ChooseNonPayer7Bad
+position: -171,196
+---
+{$npcName}: Right. Okay. One thing at a time. Sorry about that. Here's my card. 
+<<collect>>
+===

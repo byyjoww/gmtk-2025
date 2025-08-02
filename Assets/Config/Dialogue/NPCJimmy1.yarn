@@ -1,6 +1,6 @@
 ﻿title: NPCJimmy1
+// Tadhg - Male
 ---
-<<declare $npcName = "DefaultName">>
 
 You: Can I see your ticket, please?
 {$npcName}: Ah, brings back memories. I used to punch tickets myself.

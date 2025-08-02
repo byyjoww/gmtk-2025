@@ -1,0 +1,27 @@
+﻿title: NPCJimmy8
+// Róisín - Female
+---
+You: Hello! Can I see your ticket, please. 
+{$npcName}: Sure thing! It's all just so fast here.
+{$npcName}: At home I'd still be halfway down the lane by now…
+
+-> Looks like you're keeping up with the pace. 
+    <<jump ChoosePayerJimmy8>>
+-> I think you left your ticket back down the line. 
+    <<jump ChooseNonPayerJimmy8>>
+===
+
+title: ChoosePayerJimmy8
+position: 113,283
+---
+{$npcName}: I triple-checked it this morning. I'm not taking any chances.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy8
+position: -171,196
+---
+{$npcName}: I did! I swear I did. I set a reminder and everything!
+<<kick>>
+===
+

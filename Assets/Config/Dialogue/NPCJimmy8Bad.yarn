@@ -1,0 +1,26 @@
+﻿title: NPCJimmy8Bad
+// Róisín - Female
+---
+You: Ticket check.
+{$npcName}: Right, sorry, I'm still getting used to all this.
+{$npcName}: There's no ticket machines where I'm from, just a tractor and some patience.
+
+-> You're fine, looks like it's been paid.
+    <<jump ChoosePayer8Bad>>
+-> There's no ticket here — you'll need to pay up.
+    <<jump ChooseNonPayer8Bad>>
+===
+
+title: ChoosePayer8Bad
+position: 113,283
+---
+{$npcName}: Oh, thank God. Everything's so intense here. I miss fields.
+<<nothing>>
+===
+
+title: ChooseNonPayer8Bad
+position: -171,196
+---
+{$npcName}: I... okay. I must've mixed it up. I'll pay now.
+<<collect>>
+===

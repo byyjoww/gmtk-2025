@@ -1,0 +1,26 @@
+﻿title: NPCJimmy5Bad
+// Oscar - Male
+---
+You: Ticket check.
+{$npcName}: Uh, yes. I think… I had it? I just rushed today.
+{$npcName}: I'm sorry, I'm still learning how the system works here.
+
+-> All good. You must have sorted it.
+    <<jump ChoosePayerJimmy5Bad>>
+-> I don't see any payment from you.
+    <<jump ChooseNonPayerJimmy5Bad>>
+===
+
+title: ChoosePayerJimmy5Bad
+position: 113,283
+---
+{$npcName}: Thank you. I really didn't want to cause trouble.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy5Bad
+position: -171,196
+---
+{$npcName}: Oh... yes, okay. I didn't have time this morning. I'll pay now.
+<<collect>>
+===

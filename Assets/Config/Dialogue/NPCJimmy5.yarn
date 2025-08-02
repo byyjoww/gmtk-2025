@@ -1,4 +1,29 @@
 ﻿title: NPCJimmy5
+// Oscar - Male
 ---
-This is an example of a Yarn Spinner script. Write your dialogue here!
+<<declare $npcName = "DefaultName">>
+
+You: Ticket check.
+{$npcName}: Yes! Yes, of course. I have it here.
+{$npcName}: Sorry, I'm still getting used to all this. I moved here last year.
+
+-> All good, looks like you're covered.
+    <<jump ChoosePayerJimmy5>>
+-> Nothing here says you paid.
+    <<jump ChooseNonPayerJimmy5>>
+===
+
+title: ChoosePayerJimmy5
+position: 113,283
+---
+{$npcName}: Thank you. Honestly, this system still confuses me sometimes.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy5
+position: -171,196
+---
+{$npcName}: But I—I paid online this morning! Please, you can check!
+You: Sorry lad, you'll need to get off the train. 
+<<kick>>
 ===

@@ -1,0 +1,29 @@
+﻿title: NPCJimmy6Bad
+// Female - Grainne
+---
+
+You: Ticket check.
+
+{$npcName}: Huh? Oh... yeah. I mean, maybe? I thought I did?
+
+{$npcName}: I've kind of been… distracted lately. Like, feelings-level distracted.
+
+-> Don't worry, looks like it went through.
+    <<jump ChoosePayerGrainneBad>>
+-> There's no payment here. You'll have to pay now.
+    <<jump ChooseNonPayerGrainneBad>>
+===
+
+title: ChoosePayerGrainneBad
+position: 113,283
+---
+{$npcName}: Thanks. Honestly, I've just been all over the place.
+<<nothing>>
+===
+
+title: ChooseNonPayerGrainneBad
+position: -171,196
+---
+{$npcName}: Right. Yeah. Okay. It's been a confusing week. I'll pay.
+<<collect>>
+===

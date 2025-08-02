@@ -1,0 +1,29 @@
+﻿title: NPCJimmy9Bad
+// Male - Carmac
+---
+title: NPCCormacBad
+---
+You: Ticket check.
+{$npcName}: Right, sorry — I left in a rush. Toddler tantrum. You know how it is.
+{$npcName}: Honestly? I'd rather be changing nappies than riding this train.
+
+-> Looks like you paid. Hope today goes easy.
+    <<jump ChoosePayer9Bad>>
+-> You haven't paid. I'll need the fare now.
+    <<jump ChooseNonPayer9Bad>>
+===
+
+title: ChoosePayer9Bad
+position: 113,283
+---
+{$npcName}: Appreciate that. Just trying to survive the nine-to-five.
+<<nothing>>
+===
+
+title: ChooseNonPayer9Bad
+position: -171,196
+---
+{$npcName}: Ugh. Fine. Just take it. And if I'm late, I'm blaming the office.
+<<collect>>
+===
+

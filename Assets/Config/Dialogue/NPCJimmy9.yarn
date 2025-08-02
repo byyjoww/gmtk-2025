@@ -1,0 +1,27 @@
+﻿title: NPCJimmy9
+// Male - Carmac
+---
+You: Ticket check.
+{$npcName}: Yep, yeah, hang on. Still adjusting to this again.
+{$npcName}: Two years remote, and now I'm missing breakfast with my daughter.
+
+-> Ticket's here.
+    <<jump ChoosePayerCormacGood>>
+-> You haven't paid for this ride.
+    <<jump ChooseNonPayerCormacGood>>
+===
+
+title: ChoosePayerCormacGood
+position: 113,283
+---
+{$npcName}: It's there, alright. Like clockwork. Same as my commute.
+<<collect>>
+===
+
+title: ChooseNonPayerCormacGood
+position: -171,196
+---
+{$npcName}: What? No, come on—I *swear* I tapped in! I can't be late for work! 
+<<kick>>
+===
+

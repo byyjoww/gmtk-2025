@@ -1,0 +1,28 @@
+﻿title: NPCJimmy7
+// May - Non-Binary
+---
+
+You: Can I see your ticket please.
+{$npcName}: Oh, yeah. Yeah, I've got it. Somewhere…
+{$npcName}: Sorry, just a bit spaced out. Long morning at home.
+
+-> Looks like everything's in order.
+    <<jump ChoosePayerJimmy7>>
+-> You didn't pay for your ticket.
+    <<jump ChooseNonPayerJimmy7>>
+===
+
+title: ChoosePayerJimmy7
+position: 113,283
+---
+{$npcName}: Thanks. Really. I didn't want to mess this up too.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy7
+position: -171,196
+---
+{$npcName}: What? No. I swear I paid — I had it sorted before I even left the house!
+You: I'll need you to leave the train. 
+<<kick>>
+===
