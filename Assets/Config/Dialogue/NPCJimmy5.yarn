@@ -1,8 +1,6 @@
 ﻿title: NPCJimmy5
 // Oscar - Male
 ---
-<<declare $npcName = "DefaultName">>
-
 You: Ticket check.
 {$npcName}: Yes! Yes, of course. I have it here.
 {$npcName}: Sorry, I'm still getting used to all this. I moved here last year.

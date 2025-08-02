@@ -1,0 +1,31 @@
+﻿title: NPCJimmyLoop3
+---
+You: Ticket, please.
+{$npcName}: All set! Been ahead of schedule all week.
+{$npcName}: I think I might actually have a system now. Weird, right?
+
+-> All in order.
+    <<jump ChoosePayerJimmyLoop3>>
+-> No ticket appears to be registered.
+    <<jump ChooseNonPayerJimmyLoop3>>
+===
+
+
+title: ChoosePayerJimmyLoop3
+position: -149,184
+---
+{$npcName}: Honestly? I'm proud of this. I didn't think I could stick with it.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmyLoop3
+position: 174,174
+---
+You: Looks like there's no ticket again.
+{$npcName}: What? No, I've been so careful!
+You: I'm sorry, but I can't make exceptions.
+{$npcName}: This is the worst timing...
+You: You'll have to exit at the next stop.
+{$npcName}: Right. Fine. Guess I'm walking.
+<<kick>>
+===

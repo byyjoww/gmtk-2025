@@ -1,0 +1,27 @@
+﻿title: NPCJimmyLoop2Bad
+// River - Non-Binary
+---
+You: Ticket, please.
+{$npcName}: Yeah... I meant to. I did.
+{$npcName}: I just couldn't swing it today. It was either travel or eat.
+
+-> Looks like you're good.
+    <<jump ChoosePayerJimmyLoop2Bad>>
+-> There's no ticket under your name.
+    <<jump ChooseNonPayerJimmyLoop2Bad>>
+===
+title: ChoosePayerJimmyLoop2Bad
+position: -92,181
+---
+{$npcName}: That's a relief. Seriously. I needed this ride.
+<<nothing>>
+===
+title: ChooseNonPayerJimmyLoop2Bad
+position: 231,204
+---
+You: You haven't paid for this trip.
+{$npcName}: I get it. You've got a job to do. Just... this hurts.
+You: If you can pay now, I'll let it slide.
+{$npcName}: I can cover it. Thanks.
+<<collect>>
+===

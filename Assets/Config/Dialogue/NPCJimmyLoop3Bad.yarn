@@ -1,0 +1,29 @@
+﻿title: NPCJimmyLoop3Bad
+---
+You: Ticket, please.
+{$npcName}: …Yeah. I know.
+{$npcName}: Didn't get paid from two clients this month. I'm barely holding it together.
+
+-> Looks like you've paid.
+    <<jump ChoosePayerJimmyLoop3Bad>>
+-> No payment shows up here.
+    <<jump ChooseNonPayerJimmyLoop3Bad>>
+===
+
+
+title: ChoosePayerJimmyLoop3Bad
+position: -173,208
+---
+{$npcName}: That's a weight off. Thank you.
+<<nothing>>
+===
+title: ChooseNonPayerJimmyLoop3Bad
+position: 292,195
+---
+You: You don't have a valid fare.
+{$npcName}: Yeah... I figured.
+You: I'm going to have to ask you to leave the train.
+{$npcName}: I've got nowhere to go right now.
+You: I'm sorry.
+{$npcName}: Me too.
+===

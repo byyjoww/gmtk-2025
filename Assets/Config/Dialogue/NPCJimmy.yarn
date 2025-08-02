@@ -1,25 +1,30 @@
 ﻿title: NPCJimmy
-// River
+// River - Non-Binary
 ---
+<<declare $npcName = "DefaultName">>
+
 You: Ticket, please.
 {$npcName}: Oh, yeah. Sorry. I was finishing a commission and nearly missed this.
-{$npcName}: Freelance doesn't wait for the train schedule.
+{$npcName}: Freelance doesn't wait for the train schedule, I guess. 
 
--> Looks like you managed to pay anyway. Respect.
+-> Looks like you managed to pay anyway. 
     <<jump ChoosePayer>>
 -> You haven't paid for this ride.
     <<jump ChooseNonPayer>>
-
 ===
 title: ChoosePayer
 position: 113,283
 ---
-{$npcName}: It's tight, but I try to do things right.
+{$npcName}: Money is tight, but I try to do things right.
+{$npcName}: That wasn't intentional.
 <<collect>>
 ===
 title: ChooseNonPayer
 position: -171,196
 ---
-{$npcName}: Right. Of course. I should've known this wouldn't last.
+You: I'm afraid there's no record of payment.
+{$npcName}: Seriously? Ugh. I thought I tapped in.
+You: I'm going to have to ask you to step off at the next station.
+{$npcName}: ...Yeah. Okay. I guess I get it.
 <<kick>>
 ===

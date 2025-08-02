@@ -1,0 +1,30 @@
+﻿title: NPCJimmyLoop2
+// River - Non-Binary
+position: 1,0
+---
+You: Back again. Ticket?
+{$npcName}: Yup! Learned my lesson last time — I pay before I board now.
+{$npcName}: One less thing to panic about on deadline days.
+
+-> Looks like it's paid and sorted.
+    <<jump ChoosePayerJimmyLoop2>>
+-> There's no payment on file.
+    <<jump ChooseNonPayerJimmyLoop2>>
+===
+title: ChoosePayerJimmyLoop2
+position: -178,213
+---
+{$npcName}: Thanks. I'm trying to build something steady. Step by step.
+<<collect>>
+===
+title: ChooseNonPayerJimmyLoop2
+position: 175,226
+---
+You: Hmm. No record of payment again.
+{$npcName}: What? No—this can't be right.
+You: I'm sorry. You'll have to disembark at the next stop.
+{$npcName}: I really thought I'd done it right this time…
+You: It's not personal.
+{$npcName}: Yeah. I know. Still sucks.
+<<kick>>
+===

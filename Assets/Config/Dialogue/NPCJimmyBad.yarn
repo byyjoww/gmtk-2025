@@ -2,12 +2,10 @@
 // River - Non-Binary
 ---
 You: Ticket, please.
-
 {$npcName}: Oh—uh, yeah. One sec...
-
 {$npcName}: I was up all night finishing a client brief. Kind of... rushed out the door this morning.
 
--> Looks like you managed to pay anyway. Respect.
+-> Looks like you managed to pay anyway.
     <<jump ChoosePayerJimmyBad>>
 -> You haven't paid for this ride.
     <<jump ChooseNonPayerJimmyBad>>
@@ -23,6 +21,9 @@ position: 113,283
 title: ChooseNonPayerJimmyBad
 position: -171,196
 ---
-{$npcName}: Yeah, okay. I get it. I'll pay.
+You: There's no ticket registered for you.
+{$npcName}: I wasn't trying to dodge it. Things have just been rough lately.
+You: I understand, but I have to enforce the rules.
+{$npcName}: I'll pay right now. I need to get where I'm going.
 <<collect>>
 ===
