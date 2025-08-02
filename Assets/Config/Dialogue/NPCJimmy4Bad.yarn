@@ -1,0 +1,28 @@
+﻿title: NPCJimmy4Bad
+---
+
+You: Ticket inspector. 
+
+{$npcName}: Oh, right—yeah. Just give me a sec... It's my first week commuting.
+
+{$npcName}: Had training at six this morning. I'm running on fumes.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayerJimmy4Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy4Bad>>
+===
+
+title: ChoosePayerJimmy4Bad
+position: 113,283
+---
+{$npcName}: Thanks. My legs are wrecked. College and GAA — mad combo.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy4Bad
+position: -171,196
+---
+{$npcName}: Fair. I knew I forgot something this morning. Here, take it.
+<<collect>>
+===

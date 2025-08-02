@@ -1,25 +1,26 @@
 ﻿title: NPCJimmy1
 ---
+<<declare $npcName = "DefaultName">>
 
 You: Can I see your ticket, please?
 {$npcName}: Ah, brings back memories. I used to punch tickets myself.
 {$npcName}: Ran this line for fifteen years. Different world back then.
 
 -> Looks like you're still doing it by the book.
-    <<jump ChoosePayer>>
--> You haven't paid for this journey.
-    <<jump ChooseNonPayer>>
+    <<jump ChoosePayerJimmy1>>
+-> I don't see any payment for this journey. 
+    <<jump ChooseNonPayerJimmy1>>
 
 ===
-title: ChoosePayer1
+title: ChoosePayerJimmy1
 position: 113,283
 ---
 {$npcName}: Can't help it. Muscle memory and all that.
 <<collect>>
 ===
-title: ChooseNonPayer1
+title: ChooseNonPayerJimmy1
 position: -171,196
 ---
-{$npcName}: That's a shame. Thought you'd understand, inspector.
+{$npcName}: I cannot believe you would accuse me of such a thing. I will be talking to your manager. 
 <<kick>>
 ===

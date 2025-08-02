@@ -3,22 +3,24 @@
 
 You: Have your tickets ready!
 {$npcName}: Oh, sorry! My dog got loose and I nearly missed this train.
+You: Dogs are so good. 
+{$npcName}: Not when they nearly make you late for work!
 
 -> Looks like you paid. Glad you made it.
-    <<jump ChoosePayer>>
--> No ticket, no ride.
-    <<jump ChooseNonPayer>>
+    <<jump ChoosePayerJimmy2>>
+-> You can't use your dog as an excuse for no ticket. 
+    <<jump ChooseNonPayerJimmy2>>
 
 ===
-title: ChoosePayer2
+title: ChoosePayerJimmy2
 position: 113,283
 ---
 {$npcName}: Thank you! It's been that kind of morning.
 <<collect>>
 ===
-title: ChooseNonPayer2
+title: ChooseNonPayerJimmy2
 position: -171,196
 ---
-{$npcName}: You know what? I don't need this. I'm getting off.
+{$npcName}: You know what? I don't need to stand for these accusations. I'm getting off.
 <<kick>>
 ===

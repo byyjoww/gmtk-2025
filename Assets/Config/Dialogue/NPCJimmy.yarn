@@ -1,7 +1,5 @@
 ﻿title: NPCJimmy
 ---
-<<declare $npcName = "DefaultName">>
-
 You: Ticket, please.
 {$npcName}: Oh, yeah. Sorry. I was finishing a commission and nearly missed this.
 {$npcName}: Freelance doesn't wait for the train schedule.

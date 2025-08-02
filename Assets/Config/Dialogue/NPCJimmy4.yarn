@@ -7,20 +7,20 @@ You: Ticket inspector.
 {$npcName}: I had training at six this morning. I'm still half asleep.
 
 -> You paid. Respect, especially after a session that early.
-    <<jump ChoosePayer>>
+    <<jump ChoosePayerJimmy4>>
 -> This ticket is out of date.
-    <<jump ChooseNonPayer>>
+    <<jump ChooseNonPayerJimmy4>>
 
 ===
-title: ChoosePayer4
+title: ChoosePayerJimmy4
 position: 113,283
 ---
 {$npcName}: Thanks. My legs are wrecked. College and GAA — mad combo.
 <<collect>>
 ===
-title: ChooseNonPayer4
+title: ChooseNonPayerJimmy4
 position: -171,196
 ---
-{$npcName}: Sound. Another L for the week. Cheers anyway.
+{$npcName}: Sound. Another L for the week.
 <<kick>>
 ===

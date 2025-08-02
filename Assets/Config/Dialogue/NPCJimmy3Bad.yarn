@@ -1,0 +1,32 @@
+﻿title: NPCJimmy3Bad
+---
+
+You: Tickets, please.
+
+{$npcName}: One sec! I *swear* I had it when I left college.
+
+{$npcName}: My whole bag's chaos — lab notes, protein bars, regrets... and probably no ticket, if I'm honest.
+
+You: Lab notes can't pay the ride, I'm afraid.
+
+{$npcName}: Wait—uh—hang on...
+
+-> You're good!
+    <<jump ChoosePayerJimmy3Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy3Bad>>
+===
+
+title: ChoosePayerJimmy3Bad
+position: 113,283
+---
+{$npcName}: Oh thank god. First time doing this commute solo.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy3Bad
+position: -171,196
+---
+{$npcName}: Ah... caught me. Sorry. I'll cover it now.
+<<collect>>
+===

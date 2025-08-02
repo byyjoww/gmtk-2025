@@ -1,0 +1,31 @@
+﻿title: NPCJimmy2Bad
+---
+
+You: Have your tickets ready!
+
+{$npcName}: Oh, sorry! My dog got loose and I *barely* made it on board...
+
+You: Dogs are so good.
+
+{$npcName}: Not when they nearly make you miss the train *and* forget things.
+
+-> Looks like you paid. Glad you made it.
+    <<jump ChoosePayerJimmy2Bad>>
+-> You can't use your dog as an excuse for no ticket. 
+    <<jump ChooseNonPayerJimmy2Bad>>
+===
+
+title: ChoosePayerJimmy2Bad
+position: 113,283
+---
+{$npcName}: Thank you! It's been that kind of morning.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy2Bad
+position: -171,196
+---
+{$npcName}: Yeah... you're right. I didn't have time to grab one.
+{$npcName}: Just charge me now before the guilt eats me alive.
+<<collect>>
+===

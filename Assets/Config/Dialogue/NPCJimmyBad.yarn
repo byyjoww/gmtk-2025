@@ -1,0 +1,27 @@
+﻿title: NPCJimmyBad
+---
+You: Ticket, please.
+
+{$npcName}: Oh—uh, yeah. One sec...
+
+{$npcName}: I was up all night finishing a client brief. Kind of... rushed out the door this morning.
+
+-> Looks like you managed to pay anyway. Respect.
+    <<jump ChoosePayerJimmyBad>>
+-> You haven't paid for this ride.
+    <<jump ChooseNonPayerJimmyBad>>
+===
+
+title: ChoosePayerJimmyBad
+position: 113,283
+---
+{$npcName}: Honestly? I didn't. But... thank you. Really.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmyBad
+position: -171,196
+---
+{$npcName}: Yeah, okay. I get it. I'll pay.
+<<collect>>
+===

@@ -9,18 +9,18 @@ You: Lab notes can't pay the ride, I'm afraid.
 {$npcName}: Found it!
 
 -> You're good!
-    <<jump ChoosePayer>>
+    <<jump ChoosePayerJimmy3>>
 -> This ticket is out of date.
-    <<jump ChooseNonPayer>>
+    <<jump ChooseNonPayerJimmy3>>
 
 ===
-title: ChoosePayer3
+title: ChoosePayerJimmy3
 position: 113,283
 ---
 {$npcName}: Oh thank god. First time doing this commute solo.
 <<collect>>
 ===
-title: ChooseNonPayer3
+title: ChooseNonPayerJimmy3
 position: -171,196
 ---
 {$npcName}: Oh no... Seriously? That's it then. I'm done.
