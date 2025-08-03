@@ -1,0 +1,31 @@
+﻿title: NPCJimmy6Loop3
+// Gráinne – Female
+---
+
+You: Ticket check.  
+{$npcName}: I'm *pretty sure* I have it today.  
+{$npcName}: She triple-checked my bag before I left.  
+You: That's love. Or micromanagement.
+
+-> You've paid. Nice work.  
+    <<jump ChoosePayerJimmy6Loop3>>  
+-> Still no payment showing here.  
+    <<jump ChooseNonPayerJimmy6Loop3>>  
+===
+
+title: ChoosePayerJimmy6Loop3
+position: 113,283
+---
+{$npcName}: She'll be delighted.  
+{$npcName}: Said I needed a win this week.  
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy6Loop3
+position: -171,196
+---
+{$npcName}: Oh, seriously?  
+You: Afraid so. You'll have to step off.  
+{$npcName}: She *literally packed* my stuff this morning. She's gonna kill me.  
+<<kick>>
+===

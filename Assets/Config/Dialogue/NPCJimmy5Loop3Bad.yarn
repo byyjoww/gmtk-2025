@@ -1,0 +1,33 @@
+﻿title: NPCJimmy5Loop3Bad
+---
+// Oscar - Loop 3 - Not Paid
+---
+
+You: Ticket, please.
+{$npcName}: I... think I tapped it in? Maybe not? I was rushing again.
+{$npcName}: This still feels new sometimes. 
+{$npcName}: It can make me feel homesick. 
+
+-> All good. You must have sorted it.
+    <<jump ChoosePayerJimmy5Loop3Bad>>
+-> I don't see any payment from you.
+    <<jump ChooseNonPayerJimmy5Loop3Bad>>
+
+===
+
+title: ChoosePayerJimmy5Loop3Bad
+position: 113,283
+---
+{$npcName}: Phew. Honestly, I panic every time I hear 'ticket check.'
+{$npcName}: Still not used to how fast things move here.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy5Loop3Bad
+position: -171,196
+---
+{$npcName}: Just charge me.
+{$npcName}: How much is the fee here?
+<<collect>>
+
+===

@@ -1,0 +1,31 @@
+﻿title: NPCJimmy6Loop3Bad
+// Gráinne – Female
+---
+
+You: Ticket check.  
+{$npcName}: Right! It's... here?  
+{$npcName}: She made me a list. I just didn't read it.  
+You: A list *and* a reminder? You're pushing your luck.
+
+-> This one's valid. You're good.  
+    <<jump ChoosePayerJimmy6Loop3Bad>>  
+-> This ticket's no good today.  
+    <<jump ChooseNonPayerJimmy6Loop3Bad>>  
+===
+
+title: ChoosePayerJimmy6Loop3Bad
+position: 113,283
+---
+{$npcName}: Ha! I win.  
+{$npcName}: I'm texting her the second I sit down.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy6Loop3Bad
+position: -171,196
+---
+{$npcName}: Damn it.  
+{$npcName}: She's gonna say this proves I need her around more.  
+{$npcName}: What's the charge?
+<<collect>>
+===

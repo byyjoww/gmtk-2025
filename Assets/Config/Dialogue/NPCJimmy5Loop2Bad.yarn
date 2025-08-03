@@ -1,0 +1,30 @@
+﻿title: NPCJimmy5Loop2Bad
+// Oscar - Loop 2 - Not Paid
+---
+
+You: Ticket check.
+{$npcName}: Yes, of course! I think I saved it to my email... somewhere?
+{$npcName}: I *meant* to print it this morning but got sidetracked.
+
+-> All good. You must have sorted it.
+    <<jump ChoosePayerJimmy5Loop2Bad>>
+-> I don't see any payment from you.
+    <<jump ChooseNonPayerJimmy5Loop2Bad>>
+
+===
+
+title: ChoosePayerJimmy5Loop2Bad
+position: 113,283
+---
+{$npcName}: Thank you. I'm really trying to get everything right here.
+{$npcName}: Some mornings just feel like a test.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy5Loop2Bad
+position: -171,196
+---
+{$npcName}: Oh... I forgot, didn't I?
+{$npcName}: Please just let me pay now. I promise it won't happen again.
+<<collect>>
+===

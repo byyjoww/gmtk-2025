@@ -1,0 +1,30 @@
+﻿title: NPCJimmy6Loop2Bad
+// Gráinne – Female
+---
+You: Morning. Ticket, please.  
+{$npcName}: Right. Yeah. Sorry.  
+{$npcName}: I was thinking about someone and... just spaced.  
+You: That someone got you daydreaming?
+{$npcName}: Something like that. 
+
+-> Looks like you still paid.  
+    <<jump ChoosePayerJimmy6Loop2Bad>>  
+-> I don't see any ticket on file.  
+    <<jump ChooseNonPayerJimmy6Loop2Bad>>  
+===
+
+title: ChoosePayerJimmy6Loop2Bad
+position: 113,283
+---
+{$npcName}: Oh wow. She's rubbing off on me — in a good way.  
+{$npcName}: Maybe I can do this adulting thing after all.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy6Loop2Bad
+position: -171,196
+---
+{$npcName}: Right. Ugh. I was writing her a text instead of buying the ticket.  
+{$npcName}: Go on, charge me.  
+<<collect>>
+===

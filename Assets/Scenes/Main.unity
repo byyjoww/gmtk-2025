@@ -803,45 +803,42 @@ MonoBehaviour:
       gender: 2
     - isKnown: 1
       dialogue: {fileID: -8253061345870894857, guid: dc3ede5669100cd46984e811cac2ca47, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 76c407e16d3213747b09220e5d4621db, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 4a7e4841d2794d849b8fff1fb34f3426, type: 3}
       gender: 0
     - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: e9a94efdc72f4d343b1e8a8b98004659, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 67e08ddb7a78d2e4989c76faa1a2962b, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 5d8b39173bf214e4d8adf78a66da5de7, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 157acc811c7d8ba488af62d85d87515f, type: 3}
+      gender: 0
+    - isKnown: 0
       dialogue: {fileID: -8253061345870894857, guid: c2b448d9e108d0843ace28b8e18fb553, type: 3}
-      gender: 0
-    - isKnown: 0
-      dialogue: {fileID: -8253061345870894857, guid: 86cf6a964a1850b408ef1432d8526b87, type: 3}
-      gender: 1
-    - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
       gender: 1
     - isKnown: 0
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      dialogue: {fileID: -8253061345870894857, guid: 0ccb883e41927164889fd2965ef42bb4, type: 3}
       gender: 1
     - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      dialogue: {fileID: -8253061345870894857, guid: 1751379c87cb6d3408b8c3369b39f1b4, type: 3}
       gender: 1
     - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      dialogue: {fileID: -8253061345870894857, guid: f4e4103b9c5cd1e44bbf552ff6cb239b, type: 3}
       gender: 1
     - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      dialogue: {fileID: -8253061345870894857, guid: 5c33475071e318049b37e36ddac69188, type: 3}
       gender: 1
     - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
-      gender: 0
-    - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
-      gender: 0
-    - isKnown: 0
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
-      gender: 0
-    - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
-      gender: 0
-    - isKnown: 1
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
-      gender: 1
-    - isKnown: 0
-      dialogue: {fileID: -8253061345870894857, guid: 4f7fbfebeecd6c644bbfcb38ee3b97d4, type: 3}
+      dialogue: {fileID: -8253061345870894857, guid: 0ab0790cabf1b884f80f0f1efd37d32c, type: 3}
       gender: 1
     npcs:
     - {fileID: 4875858395576552875, guid: 3dd7e7b49fa6b9c4baa5385142aa1327, type: 3}

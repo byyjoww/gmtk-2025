@@ -1,0 +1,34 @@
+﻿title: NPCJimmy5Loop3
+// Oscar - Loop 3 - Paid
+---
+
+You: Ticket check.
+{$npcName}: Yes! Got it. Triple checked before I left the house.
+{$npcName}: I even set an alarm this time.  
+{$npcName}: That's progress, right?
+
+-> All good, looks like you're covered.
+    <<jump ChoosePayerJimmy5Loop3>>
+-> Nothing here says you paid.
+    <<jump ChooseNonPayerJimmy5Loop3>>
+
+===
+
+title: ChoosePayerJimmy5Loop3
+position: 113,283
+---
+{$npcName}: Thank you. Starting to feel like less of a tourist these days.
+{$npcName}: 
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy5Loop3
+position: -171,196
+---
+You: This isn't showing up in the system, Oscar.
+{$npcName}: No way… I *definitely* bought it last night.
+{$npcName}: Maybe I tapped the wrong route?
+You: You'll have to step off at the next station.
+{$npcName}: Okay... I'll figure it out. Sorry again.
+<<kick>>
+===

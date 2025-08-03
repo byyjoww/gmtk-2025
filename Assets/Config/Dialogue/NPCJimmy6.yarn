@@ -2,25 +2,25 @@
 // Grainne - Female
 ---
 
-You: Can I see your ticket please?
+You: Ticket check, please.
+{$npcName}: Oh! Sorry. One sec...
+{$npcName}: I've just been kind of in my own head lately.
+{$npcName}: One of those mornings, you know?
 
-{$npcName}: Huh? Oh, yeah, yeah, of course. Sorry.
-{$npcName}: I've been a bit in my own head this week...
-
--> You're good. Looks like you paid.
-    <<jump ChoosePayerGrainneGood>>
--> Sorry, there's no payment on file.
-    <<jump ChooseNonPayerGrainneGood>>
+-> You still paid. Impressive.
+    <<jump ChoosePayerJimmy6>>
+-> You haven't actually paid for this trip.
+    <<jump ChooseNonPayerJimmy6>>
 ===
 
-title: ChoosePayerGrainneGood
+title: ChoosePayerJimmy6
 position: 113,283
 ---
 {$npcName}: Thanks. I've just… got a lot going on. In a good way, I think.
 <<collect>>
 ===
 
-title: ChooseNonPayerGrainneGood
+title: ChooseNonPayerJimmy6
 position: -171,196
 ---
 {$npcName}: No, I definitely paid. Can we not do this right now? Whatever, I'll get off at the next station. 

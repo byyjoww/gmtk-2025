@@ -1,0 +1,30 @@
+﻿title: NPCJimmy6Loop2
+// Gráinne – Female
+---
+You: Morning. Ticket, please.  
+{$npcName}: Yeah, sorry, I've just been... distracted.  
+{$npcName}: Everything's upside down lately. In a good way? I think.  
+{$npcName}: New person in my life. Unexpected. Kinda brilliant.
+
+-> Found it — you're covered.  
+    <<jump ChoosePayerJimmy6Loop2>>  
+-> Nothing here for this ride.  
+    <<jump ChooseNonPayerJimmy6Loop2>>  
+===
+
+title: ChoosePayerJimmy6Loop2
+position: 113,283
+---
+{$npcName}: Oh good.  
+{$npcName}: She'd absolutely roast me if I got kicked off the train.  
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy6Loop2
+position: -171,196
+---
+{$npcName}: Ah, crap.  
+You: You'll need to get off at the next stop.  
+{$npcName}: Guess she'll get a laugh out of this too.  
+<<kick>>
+===
