@@ -1,27 +1,29 @@
 ﻿title: NPCJimmy1Bad
-// Tadhg - Male
+// Tadhg - Loop 1 - Not Paid
 ---
-
 You: Can I see your ticket, please?
 {$npcName}: Ah, that question takes me back. I used to punch tickets myself.
 {$npcName}: Fifteen years on this line... You start to *feel* like part of the train, you know?
 
 -> Looks like you're still doing it by the book.
-    <<jump ChoosePayerJimmy1Bad>>
+    <<jump ChoosePayerJimmy1Loop1Bad>>
 -> I don't see any payment for this journey. 
-    <<jump ChooseNonPayerJimmy1Bad>>
+    <<jump ChooseNonPayerJimmy1LoopBad>>
 ===
 
-title: ChoosePayerJimmy1Bad
+title: ChoosePayerJimmy1Loop1Bad
 position: 113,283
 ---
 {$npcName}: Old habits, I suppose. Some things are hard to shake.
+{$npcName}: Paying for the trip just feels automatic.
 <<nothing>>
 ===
 
-title: ChooseNonPayerJimmy1Bad
+title: ChooseNonPayerJimmy1LoopBad
 position: -171,196
 ---
+You: There's no fare attached to your account.
 {$npcName}: Hmph. Alright, alright. I suppose I owe for this one.
+{$npcName}: Consider it a rare lapse in judgement — not a habit.
 <<collect>>
 ===

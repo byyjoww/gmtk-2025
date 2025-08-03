@@ -1,0 +1,31 @@
+﻿title: NPCJimmy1Loop2Bad
+// Tadhg - Loop 2 - Not Paid
+---
+
+You: Ticket check, sir.
+{$npcName}: I keep thinking I still wear the uniform.
+{$npcName}: But now I'm the one being asked. Life's strange.
+
+-> All looks in order today.
+    <<jump ChoosePayerJimmy1Loop2Bad>>
+-> No fare on record for you today.
+    <<jump ChooseNonPayerJimmy1Loop2Bad>>
+
+===
+
+title: ChoosePayerJimmy1Loop2Bad
+position: 113,283
+---
+{$npcName}: Good to know my old instincts haven't failed me.
+{$npcName}: One less thing to miss from back then.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy1Loop2Bad
+position: -171,196
+---
+You: I don't see any ticket or record of purchase.
+{$npcName}: Blast it. I must've forgotten entirely.
+{$npcName}: My memory isn't what it was. Here, I'll sort it now.
+<<collect>>
+===

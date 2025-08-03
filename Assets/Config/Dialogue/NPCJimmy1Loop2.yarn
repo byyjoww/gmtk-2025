@@ -1,0 +1,33 @@
+﻿title: NPCJimmy1Loop2
+// Tadhg - Loop 2 - Paid
+position: -30,-170
+---
+You: Ticket inspection time.
+{$npcName}: It's funny, being on this side of the clipboard.
+{$npcName}: I still wake up early like I've got a shift to catch.
+
+-> Glad to see you're still paying your way.
+    <<jump ChoosePayerJimmy1Loop2>>
+-> You're not showing up on the system today.
+    <<jump ChooseNonPayerJimmy1Loop2>>
+===
+
+title: ChoosePayerJimmy1Loop2
+position: 90,171
+---
+{$npcName}: A good worker never skips the basics.
+{$npcName}: You don't last fifteen years on the rails by cutting corners.
+{$npcName}: Old habits die hard — for the better.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy1Loop2
+position: -223,99
+---
+You: I'm afraid there's no valid fare for this trip.
+{$npcName}: You're saying I didn't pay?
+{$npcName}: That's a first. Never thought I'd be on the wrong end of this.
+You: I'm going to have to ask you to disembark at the next stop.
+{$npcName}: ...Well. I suppose even old hands slip up.
+<<kick>>
+===

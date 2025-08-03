@@ -1,26 +1,31 @@
 ﻿title: NPCJimmy1
-// Tadhg - Male
+// Tadhg - Loop 1 - Paid
 ---
-
 You: Can I see your ticket, please?
 {$npcName}: Ah, brings back memories. I used to punch tickets myself.
 {$npcName}: Ran this line for fifteen years. Different world back then.
 
 -> Looks like you're still doing it by the book.
-    <<jump ChoosePayerJimmy1>>
+    <<jump ChoosePayerJimmy1Loop1>>
 -> I don't see any payment for this journey. 
-    <<jump ChooseNonPayerJimmy1>>
-
+    <<jump ChooseNonPayerJimmy1Loop1>>
 ===
-title: ChoosePayerJimmy1
+
+title: ChoosePayerJimmy1Loop1
 position: 113,283
 ---
 {$npcName}: Can't help it. Muscle memory and all that.
+{$npcName}: Some routines you never really leave behind.
 <<collect>>
 ===
-title: ChooseNonPayerJimmy1
+
+title: ChooseNonPayerJimmy1Loop1
 position: -171,196
 ---
-{$npcName}: I cannot believe you would accuse me of such a thing. I will be talking to your manager. 
+You: I don't see any record of payment, sir.
+{$npcName}: I cannot believe you would accuse me of such a thing.
+{$npcName}: I ran tighter checks than this back in my day.
+You: I'm afraid you'll need to step off at the next stop.
+{$npcName}: This is outrageous. I *will* be talking to your manager.
 <<kick>>
 ===

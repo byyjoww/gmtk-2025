@@ -1,0 +1,29 @@
+﻿title: NPCJimmy1Loop3Bad
+// Tadhg - Loop 3 - Not Paid
+---
+You: Ticket inspection.
+{$npcName}: The longer I ride, the more I remember what I've lost.
+{$npcName}: But I suppose that's part of the journey too.
+
+-> You're all clear today.
+    <<jump ChoosePayerJimmy1Loop3Bad>>
+-> This ride isn't paid for. Can you explain?
+    <<jump ChooseNonPayerJimmy1Loop3Bad>>
+===
+
+title: ChoosePayerJimmy1Loop3Bad
+position: 113,283
+---
+{$npcName}: Heh. At least I got that right.
+{$npcName}: Maybe I'm not fading just yet.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy1Loop3Bad
+position: -171,196
+---
+You: I've checked twice, and there's still no fare on file.
+{$npcName}: That's on me. I should've double-checked.
+{$npcName}: It's harder to stay sharp when the routine's gone.
+<<collect>>
+===

@@ -1,0 +1,32 @@
+﻿title: NPCJimmy1Loop3
+---
+You: Tickets out, please.
+{$npcName}: You know, I used to recognize every single face on the morning line.
+{$npcName}: Now I barely recognize the stations. Time rolls fast.
+
+-> You've still got your ticket, at least.
+    <<jump ChoosePayerJimmy1Loop3>>
+-> Sorry, there's no payment logged for today.
+    <<jump ChooseNonPayerJimmy1Loop3>>
+
+===
+
+title: ChoosePayerJimmy1Loop3
+position: 113,283
+---
+{$npcName}: Feels like the one thing I still get right.
+{$npcName}: That, and morning tea strong enough to restart a train.
+{$npcName}: Thanks for checking — keeps the system honest.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy1Loop3
+position: -171,196
+---
+You: No sign of payment on file, sir.
+{$npcName}: What? I was certain I tapped in.
+{$npcName}: Damn... Maybe I dreamed it. Happens more than I'd like.
+You: I'm sorry, but you'll need to leave at the next stop.
+{$npcName}: Well. If that's the rule, I won't fight it. Not my train anymore.
+<<kick>>
+===

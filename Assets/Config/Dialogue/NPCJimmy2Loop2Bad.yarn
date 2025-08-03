@@ -1,0 +1,29 @@
+﻿title: NPCJimmy2Loop2Bad
+// Aoife - Loop 2 - Not Paid
+---
+You: Tickets ready, please.
+{$npcName}: The dog got mud on literally everything.
+{$npcName}: I had to change trousers in the lift.
+
+-> Looks like you remembered your ticket at least.
+    <<jump ChoosePayerJimmy2Loop2Bad>>
+-> There's no fare on file for you.
+    <<jump ChooseNonPayerJimmy2Loop2Bad>>
+===
+
+title: ChoosePayerJimmy2Loop2Bad
+position: 113,283
+---
+{$npcName}: That ticket was bought in a blind panic.
+{$npcName}: But hey, a win is a win.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy2Loop2Bad
+position: -171,196
+---
+{$npcName}: No? Seriously?
+{$npcName}: Ughhh. That was the *one* thing I was supposed to remember.
+{$npcName}: Just charge me. I'm too tired to argue.
+<<collect>>
+===

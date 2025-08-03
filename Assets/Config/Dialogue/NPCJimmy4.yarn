@@ -1,10 +1,8 @@
 ﻿title: NPCJimmy4
 // Darragh - Male
 ---
-
 You: Ticket inspector. 
-
-{$npcName}: Oh, right—yeah. Hang on. First week commuting, still getting used to it.
+{$npcName}: Oh, right, yeah. Hang on. First week commuting, still getting used to it.
 {$npcName}: I had training at six this morning. I'm still half asleep.
 
 -> You paid. Respect, especially after a session that early.

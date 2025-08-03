@@ -1,0 +1,29 @@
+﻿title: NPCJimmy4Loop2Bad
+// Darragh - Loop 2 - Not Paid
+---
+
+You: Ticket check.
+{$npcName}: Sorry, sorry, thought I had it on my phone.
+{$npcName}: Can barely think straight after morning sprints.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayerJimmy4Loop2Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy4Loop2Bad>>
+
+===
+title: ChoosePayerJimmy4Loop2Bad
+position: 113,283
+---
+{$npcName}: Legend. Thought I was gonna get benched *and* fined today.
+{$npcName}: Not the worst outcome.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy4Loop2Bad
+position: -171,196
+---
+{$npcName}: Yeah, fair enough. Forgot to top it up last night.
+{$npcName}: Just bill me, I've had enough laps for one morning.
+<<collect>>
+===

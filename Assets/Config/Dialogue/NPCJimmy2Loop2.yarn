@@ -1,0 +1,32 @@
+﻿title: NPCJimmy2Loop2
+// Aoife - Loop 2 - Paid
+---
+You: Morning. Tickets, please.
+{$npcName}: You won't believe this, she chewed through *another* lead.
+{$npcName}: I'm jogging down the street in slippers like a maniac.
+
+-> Looks like you still managed to pay.
+    <<jump ChoosePayerJimmy2Loop2>>
+-> I'm not seeing any payment from you today.
+    <<jump ChooseNonPayerJimmy2Loop2>>
+
+===
+
+title: ChoosePayerJimmy2Loop2
+position: 113,283
+---
+{$npcName}: I bought it while wrestling the lead from her jaws.
+{$npcName}: Adrenaline-based organisation — my new method.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy2Loop2
+position: -171,196
+---
+You: Sorry, but there's no ticket linked to your account today.
+{$npcName}: What? Oh no, I *knew* I forgot something.
+{$npcName}: I was too focused on not getting dragged into traffic.
+You: I'm going to have to ask you to leave at the next stop.
+{$npcName}: Seriously? Ugh... Fine. She'll love the walk anyway.
+<<kick>>
+===

@@ -1,0 +1,28 @@
+﻿title: NPCJimmy2Loop3Bad
+// Aoife - Loop 3 - Not Paid
+---
+You: Ticket, please.
+{$npcName}: Okay so, the dog got sick, the neighbour blocked me in, and I *still* made the train.
+
+-> Looks like the universe gave you one break today.
+    <<jump ChoosePayerJimmy2Loop3Bad>>
+-> It also looks like you forgot to pay.
+    <<jump ChooseNonPayerJimmy2Loop3Bad>>
+===
+
+title: ChoosePayerJimmy2Loop3Bad
+position: 113,283
+---
+{$npcName}: Miracle of miracles. That ticket got bought mid-chaos.
+{$npcName}: Finally caught a break.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy2Loop3Bad
+position: -171,196
+---
+{$npcName}: I swear I thought I hit 'confirm'. 
+{$npcName}: I got distracted when the dog jumped on the oven.
+{$npcName}: Just... hit me with the fine.
+<<collect>>
+===

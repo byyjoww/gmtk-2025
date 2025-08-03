@@ -1,0 +1,33 @@
+﻿title: NPCJimmy4Loop2
+// Darragh - Loop 2 - Paid
+---
+
+You: Ticket check.
+{$npcName}: Sorry, nearly dozed off there. Morning weights hit different.
+{$npcName}: I've been balancing training and lectures — neither of them wait for sleep.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayerJimmy4Loop2>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy4Loop2>>
+
+===
+
+title: ChoosePayerJimmy4Loop2
+position: 113,283
+---
+{$npcName}: Appreciate that. I'm running on protein bars and prayers lately.
+{$npcName}: Still not used to how early this commute hits.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy4Loop2
+position: -171,196
+---
+You: This ticket's not valid anymore.
+{$npcName}: Wait, seriously? I could've sworn I scanned this morning.
+{$npcName}: Guess I was too wrecked to notice.
+You: I'm going to have to ask you to step off at the next stop.
+{$npcName}: Mad... alright. I'll walk it off.
+<<kick>>
+===

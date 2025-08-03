@@ -1,0 +1,32 @@
+﻿title: NPCJimmy2Loop3
+// Aoife - Loop 3 - Paid
+---
+
+You: Ticket check!
+{$npcName}: Oh thank god you're here. I just realised I left my lunch on the roof of the car.
+{$npcName}: This day is cursed. *Cursed.*
+
+-> At least your ticket's sorted.
+    <<jump ChoosePayerJimmy2Loop3>>
+-> Sorry, there's no sign of payment on our end.
+    <<jump ChooseNonPayerJimmy2Loop3>>
+===
+
+title: ChoosePayerJimmy2Loop3
+position: 113,283
+---
+{$npcName}: Well, hey, something worked!
+{$npcName}: That might be the only win I get today.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy2Loop3
+position: -171,196
+---
+You: There's no record of a paid fare under your name.
+{$npcName}: Oh no... Wait — did I pay for *yesterday* twice by accident?
+{$npcName}: No no no, please, I *cannot* deal with this right now.
+You: I'm afraid you'll have to leave the train at the next stop.
+{$npcName}: Ugh. This week just keeps on giving.
+<<kick>>
+===

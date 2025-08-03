@@ -1,0 +1,33 @@
+﻿title: NPCJimmy4Loop3
+// Darragh - Loop 3 - Paid
+---
+
+You: Morning. Ticket, please.
+
+{$npcName}: Yep, got it ready today — learning from my mistakes.
+{$npcName}: Between early drills and late classes, I don't have time for second warnings.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayerJimmy4Loop3>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy4Loop3>>
+
+===
+
+title: ChoosePayerJimmy4Loop3
+position: 113,283
+---
+{$npcName}: Deadly. Honestly, I thought I was gonna forget again.
+{$npcName}: Coach says discipline starts *off* the pitch too.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy4Loop3
+position: -171,196
+---
+You: This isn't a valid ticket for today.
+{$npcName}: Ah no, not again... thought I had it sorted.
+{$npcName}: Must've clicked through the wrong option.
+You: I'm going to have to ask you to leave the train.
+<<kick>>
+===

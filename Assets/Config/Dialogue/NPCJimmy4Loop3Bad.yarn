@@ -1,0 +1,28 @@
+﻿title: NPCJimmy4Loop3Bad
+// Darragh - Loop 3 - Not Paid
+---
+
+You: Morning. Ticket, please.
+{$npcName}: Please tell me it's still valid...
+{$npcName}: I swear I bought one during lunch break yesterday.
+
+-> You paid. Respect, especially after a session that early.
+    <<jump ChoosePayerJimmy4Loop3Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy4Loop3Bad>>
+
+===
+title: ChoosePayerJimmy4Loop3Bad
+position: 113,283
+---
+{$npcName}: Class. Was worried I botched the tap-in again.
+{$npcName}: Thank god muscle memory kicked in somewhere.
+<<nothing>>
+===
+title: ChooseNonPayerJimmy4Loop3Bad
+position: -171,196
+---
+{$npcName}: Knew it. Missed the top-up last night again.
+{$npcName}: Here, just sort it now before I fully crash.
+<<collect>>
+===

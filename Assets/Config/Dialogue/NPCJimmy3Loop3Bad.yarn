@@ -1,0 +1,30 @@
+﻿title: NPCJimmy3Loop3Bad
+// Aoibheann - Loop 3 - Not Paid
+---
+
+You: Ticket, please.
+{$npcName}: Ugh. I put it in my notebook, I *swear*.
+{$npcName}: Or maybe my lab coat. Or the fridge.
+
+-> You're good!
+    <<jump ChoosePayerJimmy3Loop3Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy3Loop3Bad>>
+
+===
+
+title: ChoosePayerJimmy3Loop3Bad
+position: 113,283
+---
+{$npcName}: It's a miracle. Honestly, I needed this win.
+{$npcName}: One valid decision today.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy3Loop3Bad
+position: -171,196
+---
+{$npcName}: Damn... yeah. That's expired, isn't it?
+{$npcName}: I'm just gonna pay and pretend this never happened.
+<<collect>>
+===

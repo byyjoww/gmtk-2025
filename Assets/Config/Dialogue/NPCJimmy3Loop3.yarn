@@ -1,0 +1,36 @@
+﻿title: NPCJimmy3Loop3
+// Aoibheann - Loop 3 - Paid
+---
+
+You: Ticket, please.
+{$npcName}: It's here somewhere... I put it with the study notes.
+{$npcName}: Which may have been a tactical error.
+You: Let me guess—buried under the half-eaten granola bar?
+{$npcName}: Accurate.
+
+-> You're good!
+    <<jump ChoosePayerJimmy3Loop3>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy3Loop3>>
+
+===
+
+title: ChoosePayerJimmy3Loop3
+position: 113,283
+---
+{$npcName}: Phew. Something *finally* went right this week.
+{$npcName}: I'm going to celebrate with exactly one deep breath.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy3Loop3
+position: -171,196
+---
+You: This one's no longer valid, I'm afraid.
+{$npcName}: Oh no... I *meant* to renew it last night!
+{$npcName}: But then I fell asleep on top of my chemistry textbook.
+You: I'm going to have to ask you to leave the train.
+{$npcName}: Well. That'll teach me to trust midnight-me.
+<<kick>>
+
+===

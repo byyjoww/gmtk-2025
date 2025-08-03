@@ -1,0 +1,35 @@
+﻿title: NPCJimmy3Loop2
+// Aoibheann - Loop 2 - Paid
+---
+
+You: Ticket check.
+{$npcName}: Please hold, my whole life is in this backpack.
+{$npcName}: Which is a problem, because it has no organisation system.
+You: That explains the stack of colour-coded post-its on your hoodie.
+
+-> You're good!
+    <<jump ChoosePayerJimmy3Loop2>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy3Loop2>>
+
+===
+
+title: ChoosePayerJimmy3Loop2
+position: 113,283
+---
+{$npcName}: Thank god. I thought I showed you a train receipt from last semester.
+{$npcName}: Honestly, I have no idea what's even in here.
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy3Loop2
+position: -171,196
+---
+You: This one's not valid anymore. No fare on file for today.
+{$npcName}: No way. Wait—seriously?
+{$npcName}: That... actually checks out.
+You: You'll need to exit at the next stop.
+{$npcName}: I mean, I *did* need a walk to clear my head. So... fair.
+<<kick>>
+
+===

@@ -1,0 +1,31 @@
+﻿title: NPCJimmy3Loop2Bad
+// Aoibheann - Loop 2 - Not Paid
+---
+You: Tickets, please.
+{$npcName}: Hang on, hang on. If I take out this folder, the whole bag explodes.
+{$npcName}: I think I remember buying it...
+
+-> You're good!
+    <<jump ChoosePayerJimmy3Loop2Bad>>
+-> This ticket is out of date.
+    <<jump ChooseNonPayerJimmy3Loop2Bad>>
+
+===
+
+title: ChoosePayerJimmy3Loop2Bad
+position: 113,283
+---
+{$npcName}: Oh, thank god. I didn't screw *everything* up today.
+{$npcName}: One small miracle to carry me through lab work.
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy3Loop2Bad
+position: -171,196
+---
+{$npcName}: You're right... that's last week's ticket.
+{$npcName}: My brain is running on caffeine and fear.
+{$npcName}: Just charge me now before I embarrass myself further.
+<<collect>>
+
+===
