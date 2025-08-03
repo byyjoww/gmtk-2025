@@ -1,0 +1,30 @@
+﻿title: NPCJimmy9Loop3
+// Male – Carmac
+---
+
+You: Ticket, please.  
+{$npcName}: Yep, got it right here. Finally nailed the morning routine.
+{$npcName}: No tantrums, no missing shoes, no forgotten tickets.  
+{$npcName}: Still missed breakfast, but… you win some.
+
+-> All looks in order. Got a spare breakfast bar as well. 
+    <<jump ChoosePayerCormacLoop3>>  
+-> There's no payment logged for today.  
+    <<jump ChooseNonPayerCormacLoop3>>  
+===
+
+title: ChoosePayerCormacLoop3
+position: 113,283
+---
+{$npcName}: Brilliant. Maybe I *can* be a functioning adult today.
+<<collect>>
+===
+
+title: ChooseNonPayerCormacLoop3
+position: -171,196
+---
+{$npcName}: You're kidding me. I even skipped saying goodbye to make this train.  
+You: I'm sorry, you'll have to disembark here.  
+{$npcName}: That's just perfect. Maybe I'll FaceTime the office from the footpath.  
+<<kick>>
+===

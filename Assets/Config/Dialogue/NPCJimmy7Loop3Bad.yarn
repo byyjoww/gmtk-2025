@@ -1,0 +1,29 @@
+﻿title: NPCJimmy7Loop3Bad
+// May – Non-Binary
+---
+
+You: Tickets.  
+{$npcName}: Yeah... I was ready for this today.  
+{$npcName}: Wrote it on a sticky note and everything. Just... forgot the sticky note.
+
+-> Looks like you're covered regardless.  
+    <<jump ChoosePayerJimmy7Loop3Bad>>  
+-> Nothing here for this journey.  
+    <<jump ChooseNonPayerJimmy7Loop3Bad>>  
+===
+
+title: ChoosePayerJimmy7Loop3Bad
+position: 113,283
+---
+{$npcName}: Phew. I needed that.  
+{$npcName}: One thing I don't have to defend today.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy7Loop3Bad
+position: -171,196
+---
+{$npcName}: Seriously? Ugh...  
+{$npcName}: My parents are gonna love hearing about *this* one.  
+<<collect>>
+===

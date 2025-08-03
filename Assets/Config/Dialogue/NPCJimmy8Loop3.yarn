@@ -1,0 +1,28 @@
+﻿title: NPCJimmy8Loop3
+// Róisín – Female
+---
+
+You: Can I see your ticket?  
+{$npcName}: Sure! I saved it under favourites this time.  
+{$npcName}: I've got a whole system now. A “Don't Be Late” alarm, “Don't Forget Your Ticket” list… city life has me on edge.
+
+-> Looks like it worked.  
+    <<jump ChoosePayerJimmy8Loop3>>  
+-> There's no ticket registered.  
+    <<jump ChooseNonPayerJimmy8Loop3>>  
+===
+
+title: ChoosePayerJimmy8Loop3
+position: 113,283
+---
+{$npcName}: Yes! Okay. That's one thing that went right today.  
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy8Loop3
+position: -171,196
+---
+{$npcName}: No. That can't be. I planned everything!  
+{$npcName}: This city is going to eat me alive.  
+<<kick>>
+===

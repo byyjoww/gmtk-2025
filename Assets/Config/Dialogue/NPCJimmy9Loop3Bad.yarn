@@ -1,0 +1,28 @@
+﻿title: NPCJimmy9Loop3Bad
+// Male – Carmac
+---
+
+You: Ticket check.  
+{$npcName}: Right, yeah. I'm hoping this morning wasn't a blur. Feels like I've already done a full day's work and it's not even 9am.  
+{$npcName}: Remote life was chaos, but at least I got to be part of the mess.
+
+-> All set.  
+    <<jump ChoosePayerCormacLoop3Bad>>  
+-> Seems like the mess resulted in a missed purchase.   
+    <<jump ChooseNonPayerCormacLoop3Bad>>  
+===
+
+title: ChoosePayerCormacLoop3Bad
+position: 113,283
+---
+{$npcName}: Good. One less thing to go wrong.  
+{$npcName}: Here's a pic of my kid. She keeps me going during the long afternoons in the office. 
+<<nothing>>
+===
+
+title: ChooseNonPayerCormacLoop3Bad
+position: -171,196
+---
+{$npcName}: Dammit. Sorry. What's the fee? 
+<<collect>>
+===

@@ -1,7 +1,6 @@
 ﻿title: NPCJimmy7
 // May - Non-Binary
 ---
-
 You: Can I see your ticket please.
 {$npcName}: Oh, yeah. Yeah, I've got it. Somewhere…
 {$npcName}: Sorry, just a bit spaced out. Long morning at home.

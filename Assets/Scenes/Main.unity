@@ -339,6 +339,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameView
       objectReference: {fileID: 0}
+    - target: {fileID: 6171595315097935914, guid: b63aa086286fa624f8393619ff61ec7b, type: 3}
+      propertyPath: m_text
+      value: You Fired!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -872,6 +876,60 @@ MonoBehaviour:
     - isKnown: 1
       dialogue: {fileID: -8253061345870894857, guid: b1c982e6f2fd2d54cab691f94cde8f74, type: 3}
       gender: 1
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 4c3d505eed72a3745b566db19008e533, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: b78614f252e1a8c4f86d91a338ae4934, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: bda7bbdc2e138624ca99e903b32715f3, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 34687c1449b3f9941b84fa3c6172a3f8, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: f9303d5313fd40d448cc6e0cbd6e3f23, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: d668c753c912aa043834fef988b1076f, type: 3}
+      gender: 2
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: b301f798bbc624d4dbf25de71d289dab, type: 3}
+      gender: 0
+    - isKnown: 0
+      dialogue: {fileID: -8253061345870894857, guid: 29d930c972c80044480a190d5eaef9de, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: bc090d5df1b615445b7a918b7a333e3e, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: a5b9ba5b30abd7140a41cf616bdff6b4, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 8190bc84f497bef4182d85525fccea39, type: 3}
+      gender: 0
+    - isKnown: 1
+      dialogue: {fileID: -8253061345870894857, guid: 7fb3e97822edb944dbcfad51a5447d89, type: 3}
+      gender: 0
     npcs:
     - {fileID: 4875858395576552875, guid: 3dd7e7b49fa6b9c4baa5385142aa1327, type: 3}
     - {fileID: 8356999251131072128, guid: 686fcb63520c0774f9639dcd2c0e34cc, type: 3}

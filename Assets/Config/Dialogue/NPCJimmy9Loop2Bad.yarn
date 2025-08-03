@@ -1,0 +1,27 @@
+﻿title: NPCJimmy9Loop2Bad
+// Male – Carmac
+---
+
+You: Ticket check.  
+{$npcName}: Ah... one sec. Pretty sure I paid between packing lunches and refereeing a toothbrushing war.  
+{$npcName}: My wife said, "Welcome back to the office grind." Still not sure she meant it kindly.
+
+-> Looks like you're covered.  
+    <<jump ChoosePayerCormacLoop2Bad>>  
+-> I think you forgot to pay during the war.  
+    <<jump ChooseNonPayerCormacLoop2Bad>>  
+===
+
+title: ChoosePayerCormacLoop2Bad
+position: 113,283
+---
+{$npcName}: Appreciate it. These early mornings feel like jetlag.  
+<<nothing>>
+===
+
+title: ChooseNonPayerCormacLoop2Bad
+position: -171,196
+---
+{$npcName}: Figures. I miss one tap and now I'm paying twice — time and money.  
+<<collect>>
+===

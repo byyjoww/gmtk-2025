@@ -1,0 +1,29 @@
+﻿title: NPCJimmy9Loop2
+// Male – Carmac
+---
+You: Morning. Ticket, please.  
+{$npcName}: Yeah, hang on… It's in here somewhere between snack wrappers and a drawing of a dinosaur.  
+{$npcName}: My daughter made it to "keep me company" on the commute. She's not thrilled I'm gone again.
+
+-> You're good to go. Tell your daughter the ticket inspector said hello. 
+    <<jump ChoosePayerCormacLoop2>>  
+-> I don't see a valid ticket here.  
+    <<jump ChooseNonPayerCormacLoop2>>  
+===
+
+title: ChoosePayerCormacLoop2
+position: 113,283
+---
+{$npcName}: Thanks. Still adjusting to this whole work-life *imbalance*.  
+<<collect>>
+===
+
+title: ChooseNonPayerCormacLoop2
+position: -171,196
+---
+{$npcName}: What? No, no, I had it. 
+{$npcName}: I even double-checked so I wouldn't screw this up.  
+You: Sorry. You'll need to step off here.
+{$npcName}: Great. Another bedtime story I'll miss.  
+<<kick>>
+===

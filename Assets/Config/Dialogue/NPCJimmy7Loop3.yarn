@@ -1,0 +1,31 @@
+﻿title: NPCJimmy7Loop3
+// May – Non-Binary
+---
+You: Tickets ready?  
+{$npcName}: Yep. I mean... I *hope* so. I double-checked this morning.  
+{$npcName}: Didn't want to give them another reason to say I'm not responsible.  
+You: Them?  
+{$npcName}: Family stuff. Not worth getting into.
+
+-> You're clear. All paid up.  
+    <<jump ChoosePayerJimmy7Loop3>>  
+-> No valid ticket, I'm afraid.   
+    <<jump ChooseNonPayerJimmy7Loop3>>  
+===
+
+title: ChoosePayerJimmy7Loop3
+position: 113,283
+---
+{$npcName}: Thank god.  
+{$npcName}: One less argument waiting when I get home.  
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy7Loop3
+position: -171,196
+---
+{$npcName}: No way. I swear I got it this time.  
+You: I'm sorry. You'll have to disembark.  
+{$npcName}: Right. Yeah. Not even surprised, honestly.  
+<<kick>>
+===

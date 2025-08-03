@@ -1,0 +1,29 @@
+﻿title: NPCJimmy8Loop2
+// Róisín – Female
+---
+
+You: Morning. Ticket, please.  
+{$npcName}: Right! Sorry. I've started keeping it in my phone case so I don't lose it.  
+{$npcName}: City folk are *so* fast. I swear someone tutted at me just for walking too slow earlier.
+
+-> Looks like you're keeping pace.  
+    <<jump ChoosePayerJimmy8Loop2>>  
+-> No ticket showing here.  
+    <<jump ChooseNonPayerJimmy8Loop2>>  
+===
+
+title: ChoosePayerJimmy8Loop2
+position: 113,283
+---
+{$npcName}: Phew. I'm still not used to the crowds. b
+{$npcName}: But I feel like I'm getting there.  
+<<collect>>
+===
+
+title: ChooseNonPayerJimmy8Loop2
+position: -171,196
+---
+{$npcName}: Seriously? I checked twice!  
+{$npcName}: Ugh. Maybe I need a checklist just to leave the house.  
+<<kick>>
+===

@@ -1,0 +1,27 @@
+﻿title: NPCJimmy8Loop3Bad
+// Róisín – Female
+---
+
+You: Tickets, please.  
+{$npcName}: Oh — uh — okay. One sec.  
+{$npcName}: I had it ready earlier. Must've been swapped with the biscuit loyalty card again.
+
+-> You're good.  
+    <<jump ChoosePayerJimmy8Loop3Bad>>  
+-> Nothing valid here.  
+    <<jump ChooseNonPayerJimmy8Loop3Bad>>  
+===
+
+title: ChoosePayerJimmy8Loop3Bad
+position: 113,283
+---
+{$npcName}: Ah, brilliant. I won't be the culchie holding up the train today.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy8Loop3Bad
+position: -171,196
+---
+{$npcName}: Right. Of course. Should've stayed with the cows.  
+<<collect>>
+===

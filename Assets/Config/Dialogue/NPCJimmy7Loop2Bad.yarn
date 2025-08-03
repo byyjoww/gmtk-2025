@@ -1,0 +1,27 @@
+﻿title: NPCJimmy7Loop2Bad
+// May – Non-Binary
+---
+You: Ticket, please.  
+{$npcName}: Oh, uh — yeah. I know. I'm meant to be more on top of things.  
+{$npcName}: Mornings at home are... complicated lately. Lots of tension.
+
+-> All looks good.  
+    <<jump ChoosePayerJimmy7Loop2Bad>>  
+-> No sign of payment.  
+    <<jump ChooseNonPayerJimmy7Loop2Bad>>  
+===
+
+title: ChoosePayerJimmy7Loop2Bad
+position: 113,283
+---
+{$npcName}: Thanks. At least something's working today.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy7Loop2Bad
+position: -171,196
+---
+{$npcName}: Right. Of course. I'll cover it now.  
+{$npcName}: Can't afford to be any more of a disappointment.  
+<<collect>>
+===

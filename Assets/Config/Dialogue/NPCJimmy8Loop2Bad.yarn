@@ -1,0 +1,28 @@
+﻿title: NPCJimmy8Loop2Bad
+// Róisín – Female
+---
+
+You: Tickets, please.  
+{$npcName}: Yep… probably? I had it this morning. Unless I tapped the wrong app again.  
+{$npcName}: Everything's so *digital*. At home, if you lost something, it was in the dog's mouth.
+
+-> You're sorted.
+    <<jump ChoosePayerJimmy8Loop2Bad>>  
+-> No sign of payment.  
+    <<jump ChooseNonPayerJimmy8Loop2Bad>>  
+===
+
+title: ChoosePayerJimmy8Loop2Bad
+position: 113,283
+---
+{$npcName}: Oh thank God. I thought I'd have to turn around and run home to Mayo.  
+<<nothing>>
+===
+
+title: ChooseNonPayerJimmy8Loop2Bad
+position: -171,196
+---
+{$npcName}: Right. Okay. I'll pay now.  
+{$npcName}: At least back home I only had to deal with cows blocking the road.  
+<<collect>>
+===
