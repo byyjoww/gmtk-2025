@@ -1,7 +1,6 @@
 ﻿title: NPCJimmy1Loop2Bad
 // Tadhg - Loop 2 - Not Paid
 ---
-
 You: Ticket check, sir.
 {$npcName}: I keep thinking I still wear the uniform.
 {$npcName}: But now I'm the one being asked. Life's strange.

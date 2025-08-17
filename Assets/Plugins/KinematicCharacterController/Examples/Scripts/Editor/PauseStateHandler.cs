@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using KinematicCharacterController;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class PauseStateHandler
 {
+#if UNITY_EDITOR
     [RuntimeInitializeOnLoadMethod()]
     public static void Init()
     {
@@ -19,4 +22,5 @@ public class PauseStateHandler
             motor.SetPositionAndRotation(motor.Transform.position, motor.Transform.rotation, true);
         }
     }
+#endif
 }

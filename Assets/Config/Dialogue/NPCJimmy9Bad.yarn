@@ -1,8 +1,6 @@
 ﻿title: NPCJimmy9Bad
 // Male - Carmac
 ---
-title: NPCCormacBad
----
 You: Ticket check.
 {$npcName}: Right, sorry — I left in a rush. Toddler tantrum. You know how it is.
 {$npcName}: Honestly? I'd rather be changing nappies than riding this train.
